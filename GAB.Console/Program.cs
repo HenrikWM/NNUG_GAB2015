@@ -32,6 +32,11 @@
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            HandleManualInput(args);
+        }
+
+        private static void HandleManualInput(string[] args)
+        {
             try
             {
                 // Arguments: Order No. (1), Customer No. (2), Customer Name (3), Order Item No. (4), Order Item Name (5)
