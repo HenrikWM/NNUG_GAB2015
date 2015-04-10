@@ -13,8 +13,10 @@
                 OrderNo = int.Parse(orderNo),
                 Created = DateTime.Now,
                 Customer = new Customer { No = int.Parse(customerNo), Name = customerName },
-                OrderItem = new OrderItem() { No = int.Parse(orderItemNo), Name = orderItemName }
+                OrderItem = new OrderItem { No = int.Parse(orderItemNo), Name = orderItemName }
             };
         }
+
+        
     }
 }

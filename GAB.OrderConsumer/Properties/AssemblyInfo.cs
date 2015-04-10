@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GAB.Console.ManualInput")]
+[assembly: AssemblyTitle("GAB.OrderConsumer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("GAB.Console.ManualInput")]
+[assembly: AssemblyProduct("GAB.OrderConsumer")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("59a6420a-ab2e-4e25-8b51-0b77230f5fb0")]
+[assembly: Guid("930f9d5d-8331-480e-9c02-d51e300c7ee6")]
 
 // Version information for an assembly consists of the following four values:
 //

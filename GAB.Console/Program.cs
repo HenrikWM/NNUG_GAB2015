@@ -1,4 +1,4 @@
-﻿namespace GAB.Console
+﻿namespace GAB.Console.ManualInput
 {
     using System;
     using System.Linq;
@@ -20,6 +20,11 @@
 
         private const string NewLine = "\r\n";
 
+        static void Main(string[] args)
+        {
+            HandleManualInput(args);
+        }
+
         /// <summary>
         /// Sample usage from console:
         /// 
@@ -30,11 +35,6 @@
         /// Press any key to quit...
         /// </summary>
         /// <param name="args"></param>
-        static void Main(string[] args)
-        {
-            HandleManualInput(args);
-        }
-
         private static void HandleManualInput(string[] args)
         {
             try
@@ -42,9 +42,9 @@
                 // Arguments: Order No. (1), Customer No. (2), Customer Name (3), Order Item No. (4), Order Item Name (5)
                 ParseArguments(args);
 
-                OrderCreator orderCreator = new OrderCreator();
-
                 OrderJsonSerializer orderJsonSerializer = new OrderJsonSerializer();
+
+                OrderCreator orderCreator = new OrderCreator();
 
                 Order order = orderCreator.Create(orderNo, customerNo, customerName, orderItemNo, orderItemName);
 

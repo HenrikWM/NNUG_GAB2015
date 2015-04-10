@@ -5,9 +5,13 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAB.Domain", "GAB.Domain\GAB.Domain.csproj", "{B7342C14-38D7-4D89-BAAC-99B154EA32E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAB.Console", "GAB.Console\GAB.Console.csproj", "{DF161957-97C7-4C30-8E3C-FAA74F574916}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAB.Console.ManualInput", "GAB.Console\GAB.Console.ManualInput.csproj", "{DF161957-97C7-4C30-8E3C-FAA74F574916}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAB.OrderProducer", "GAB.OrderProducer\GAB.OrderProducer.csproj", "{7E69EB07-DDD7-4094-BB24-D0FDE8D07ABE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAB.OrderConsumer", "GAB.OrderConsumer\GAB.OrderConsumer.csproj", "{91D16675-4F2A-44BC-8973-EDD57CED1A36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAB.Console.AutomaticInput", "GAB.Console.AutomaticInput\GAB.Console.AutomaticInput.csproj", "{825C52EB-6679-4F5D-A0C2-240775B26436}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{7E69EB07-DDD7-4094-BB24-D0FDE8D07ABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E69EB07-DDD7-4094-BB24-D0FDE8D07ABE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E69EB07-DDD7-4094-BB24-D0FDE8D07ABE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91D16675-4F2A-44BC-8973-EDD57CED1A36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91D16675-4F2A-44BC-8973-EDD57CED1A36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91D16675-4F2A-44BC-8973-EDD57CED1A36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91D16675-4F2A-44BC-8973-EDD57CED1A36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{825C52EB-6679-4F5D-A0C2-240775B26436}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{825C52EB-6679-4F5D-A0C2-240775B26436}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{825C52EB-6679-4F5D-A0C2-240775B26436}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{825C52EB-6679-4F5D-A0C2-240775B26436}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
