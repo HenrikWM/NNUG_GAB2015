@@ -4,8 +4,8 @@
     using System.Collections.Generic;
 
     using GAB.Domain;
-    using GAB.OrderConsumer;
     using GAB.OrderProducer;
+    using GAB.Services.OrderConsumer;
 
     class Program
     {
@@ -33,11 +33,11 @@
 
                 RandomOrderListCreator randomOrderListCreator = new RandomOrderListCreator();
 
-                OrderStorage orderStorage = new OrderStorage();
+                OrderConsumer orderConsumer = new OrderConsumer();
 
                 List<Order> orders = (List<Order>)randomOrderListCreator.Create();
 
-                orderStorage.Store(orders);
+                orderConsumer.Consume(orders);
 
                 Console.WriteLine("{0}Created orders: {1}", NewLine, orderJsonSerializer.Serialize(orders));
 
