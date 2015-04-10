@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
 
     using GAB.Domain;
     using GAB.OrderProducer;
@@ -35,11 +36,23 @@
 
                 OrderConsumer orderConsumer = new OrderConsumer();
 
-                List<Order> orders = (List<Order>)randomOrderListCreator.Create();
+                const int NumberOfOrders = 100;
+
+                List<Order> orders = (List<Order>)randomOrderListCreator.Create(NumberOfOrders);
+
+                Stopwatch stopwatch = new Stopwatch();
+
+                stopwatch.Start();
 
                 orderConsumer.Consume(orders);
 
+                stopwatch.Stop();
+
                 Console.WriteLine("{0}Created orders: {1}", NewLine, orderJsonSerializer.Serialize(orders));
+
+                double throughputInMinutes = NumberOfOrders / stopwatch.Elapsed.TotalMinutes;
+
+                Console.WriteLine("{0}Throughput: {1} orders/min", NewLine, Math.Round(throughputInMinutes, 0));
 
                 Console.WriteLine("{0}Press any key to quit...", NewLine);
 

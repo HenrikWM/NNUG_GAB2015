@@ -2,7 +2,7 @@
 {
     using GAB.Domain;
 
-    public class OrderStorage
+    public class AzureOrderStorage
     {
         public void Store(Order order)
         {

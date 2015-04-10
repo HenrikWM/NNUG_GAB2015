@@ -8,12 +8,12 @@ namespace GAB.OrderProducer
 
     public class RandomOrderListCreator
     {
-        public IList<Order> Create()
+        public IList<Order> Create(int size)
         {
             UniqueRandomGenerator uniqueRandomGenerator = new UniqueRandomGenerator();
 
             return
-                Builder<Order>.CreateListOfSize(100)
+                Builder<Order>.CreateListOfSize(size)
                               .All()
                               .With(o => o.OrderNo = uniqueRandomGenerator.Next(0, 999999999))
                               .With(o => o.Customer.No = uniqueRandomGenerator.Next(0, 999999999))
