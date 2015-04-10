@@ -7,5 +7,5 @@ This is a collection of workshop assignments that were given at NNUGs Global Azu
 
 The assignments will act as a step-by-step guide in which you will be introduced to the process of creating...
 
-[Proceed to the assignments](https://github.com/HenrikWM/NNUG_GAB2015/blob/master/ASSIGNMENTS.md).
+[Proceed to the assignments](https://github.com/HenrikWM/NNUG_GAB2015/blob/FinalSolution/ASSIGNMENTS.md).
 
