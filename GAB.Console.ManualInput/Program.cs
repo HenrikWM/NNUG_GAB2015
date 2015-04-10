@@ -4,7 +4,7 @@
     using System.Linq;
 
     using GAB.Domain;
-    using GAB.OrderProducer;
+    using GAB.Services.OrderProducer;
 
     class Program
     {
@@ -44,9 +44,9 @@
 
                 OrderJsonSerializer orderJsonSerializer = new OrderJsonSerializer();
 
-                OrderCreator orderCreator = new OrderCreator();
+                OrderProducer orderProducer = new OrderProducer();
 
-                Order order = orderCreator.Create(orderNo, customerNo, customerName, orderItemNo, orderItemName);
+                Order order = orderProducer.Produce(orderNo, customerNo, customerName, orderItemNo, orderItemName);
 
                 Console.WriteLine("{0}Created order: {1}", NewLine, orderJsonSerializer.Serialize(order));
 

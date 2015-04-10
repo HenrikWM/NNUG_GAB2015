@@ -1,4 +1,4 @@
-namespace GAB.OrderProducer
+namespace GAB.Services.OrderProducer
 {
     using System.Collections.Generic;
 
@@ -6,14 +6,14 @@ namespace GAB.OrderProducer
 
     using GAB.Domain;
 
-    public class RandomOrderListCreator
+    public class RandomOrderProducer
     {
-        public IList<Order> Create(int size)
+        public IList<Order> ProduceRandomOrders(int numberOfOrders)
         {
             UniqueRandomGenerator uniqueRandomGenerator = new UniqueRandomGenerator();
 
             return
-                Builder<Order>.CreateListOfSize(size)
+                Builder<Order>.CreateListOfSize(numberOfOrders)
                               .All()
                               .With(o => o.OrderNo = uniqueRandomGenerator.Next(0, 999999999))
                               .With(o => o.Customer.No = uniqueRandomGenerator.Next(0, 999999999))

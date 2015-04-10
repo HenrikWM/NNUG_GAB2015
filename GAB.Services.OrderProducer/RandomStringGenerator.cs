@@ -1,4 +1,4 @@
-namespace GAB.OrderProducer
+namespace GAB.Services.OrderProducer
 {
     using System.IO;
 

@@ -1,12 +1,12 @@
-﻿namespace GAB.OrderProducer
+﻿namespace GAB.Services.OrderProducer
 {
     using System;
 
     using GAB.Domain;
 
-    public class OrderCreator
+    public class OrderProducer
     {
-        public Order Create(string orderNo, string customerNo, string customerName, string orderItemNo, string orderItemName)
+        public Order Produce(string orderNo, string customerNo, string customerName, string orderItemNo, string orderItemName)
         {
             return new Order
             {
@@ -16,7 +16,5 @@
                 OrderItem = new OrderItem { No = int.Parse(orderItemNo), Name = orderItemName }
             };
         }
-
-        
     }
 }

@@ -5,8 +5,8 @@
     using System.Diagnostics;
 
     using GAB.Domain;
-    using GAB.OrderProducer;
     using GAB.Services.OrderConsumer;
+    using GAB.Services.OrderProducer;
 
     class Program
     {
@@ -31,15 +31,15 @@
             try
             {
                 OrderJsonSerializer orderJsonSerializer = new OrderJsonSerializer();
-
-                RandomOrderListCreator randomOrderListCreator = new RandomOrderListCreator();
+              
+                RandomOrderProducer randomOrderProducer = new RandomOrderProducer();
 
                 OrderConsumer orderConsumer = new OrderConsumer();
 
                 const int NumberOfOrders = 100;
 
-                List<Order> orders = (List<Order>)randomOrderListCreator.Create(NumberOfOrders);
-
+                List<Order> orders = (List<Order>)randomOrderProducer.ProduceRandomOrders(NumberOfOrders);
+                
                 Stopwatch stopwatch = new Stopwatch();
 
                 stopwatch.Start();

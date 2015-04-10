@@ -7,8 +7,8 @@
     <ProjectGuid>{7E69EB07-DDD7-4094-BB24-D0FDE8D07ABE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GAB.OrderProducer</RootNamespace>
-    <AssemblyName>GAB.OrderProducer</AssemblyName>
+    <RootNamespace>GAB.Services.OrderProducer</RootNamespace>
+    <AssemblyName>GAB.Services.OrderProducer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -42,9 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OrderCreator.cs" />
+    <Compile Include="OrderProducer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RandomOrderListCreator.cs" />
+    <Compile Include="RandomOrderProducer.cs" />
     <Compile Include="RandomStringGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
