@@ -45,75 +45,48 @@ They have staff to keep track of orders so manually entering is an option should
 
 To start things off they would like you to create a proof of concept solution before going into a full blown project, so the tasks are small in scope and requirements for UX and GUI are minimal. At this stage they are mainly concerned with creating a skeleton-solution that delivers on their primary requirements. You main goals are therefore to maximize throughput of order placements and ensure consistent data throughout the order process.
 
+Assignment #xx - Consume orders and store in Azure
 
-Assignment #1 - Create orders
+You have already created two components that can produce orders. One handles manual input from the console (GAB.Console.ManualInput), the other creates a high volume of orders in order to later simulate high volume traffic (GAB.Console.AutomaticInput).
 
-Firstly, you will need to create a component that will be responsible for handling data entry of orders and producing orders. Output to the console a JSON-serialized order after it has been created.
+You have also started to implement the "Order Consumer"-component (GAB.Services.OrderConsumer) and "Order Producer"-component (GAB.Services.OrderProducer).
 
-You may also want to create a domain library for the POCO-objects that will contain domain objects.
+Next you will alter the "GAB.Console.AutomaticInput"-application so that is uses Azure to store orders rather than in memory.
 
-1) Create an application (“Order Producer”) that creates orders from console input 
+1) Replace the class "InMemoryOrderStorage" with a new class called "AzureOrderStorage". 
 
-Each order should contain the following details: 
-
-Customer (No, Name)
-OrderItem (No, Name)
-Created (DateTime)
-
-For simplicity’s sake we’re going to limit each order with a single order item.
-
-You will find that the domain object are already created for you.
-
-* Components: Order Producer, Domain
-
-Definition of Done: You now have a component that can read order input from console. It creates the order and outputs the order to the console as a serialized JSON string.
-
-Assignment #2 - Consume incoming orders
-
-You now have a component that can produce orders. Next you will need to add a component that takes in orders and stores them to a storage location. For this assignment you can re-use the console application but replace reading order arguments with a call to NBuilder.
-
-1) Replace manual console input with auto-generation (NBuilder) in order to simulate larger volumes of incoming orders.
-
-2) Create a component (“Order Consumer”) that takes in orders and stores them. 
+2) Implement the method "Store".
 Examples of storage location (use one): Azure Sql, Azure Table Storage, Azure DocumentDB
 
-3) Implement the Producer and Consumer as Azure WebJobs
+Definition of Done: You can now run the "GAB.Console.AutomaticInput"-application and watch generate orders and store them into an Azure storage location.
 
-4) Measure the throughput you have by dividing total number of orders by the time it takes to store them. You need to come up with a "orders per minute"-ratio, e.g. "349/min". You can round up to nearest whole integer. Output this ratio to the console.
 
-Example on using a stop-watch to measure elapsed time:
+Assignment #xx - Create two Azure WebJobs that produces and consumes orders via the Service Bus
 
-<code>
-
-* Components: Order Producer, Domain, Order Consumer, Azure Storage
-
-Assignment #3 - Create orders, send them to the Service Bus, and consume orders from the bus and put into storage
-
-* The Producer and Consumer should use the Service bus topic "order dispatch".
-* The Producer puts orders onto the topic and the consumer subscribes for incoming orders 
+* The Producer and Consumer should use the Service Bus topic "order dispatch".
+* The Producer puts orders onto the topic and the consumer subscribes to the topic for incoming orders 
 
 * Note the throughput
 
-* Components: Order Producer, Domain, Order Consumer, Azure Storage, Azure Service Bus
+Produce orders inside a WebJob by moving the produce-code from the "GAB.Console.AutomaticInput"-project to the "GAB.OrderProducerWebJob"-project.
 
-Assignment #4 - Add volume
+1) Move producer-code: 'randomOrdersProducer.Produce(OrdersPerSecond);'.
 
-* For creating orders, replace auto-generation with reading instagram hash tags. Start with #cats and then support #dogs and #birds 
+2) Wrap the code in a loop that called the Produce-method once per second.
 
-Username is Customer Name
-UserId = Customer No.
-Item No. = <hashtag>
-Item Name = <hashtag>
+3) Implement code that sends the orders onto a Service Bus topic called "order dispatch".
 
-* Any orders that fails to be stored (at any point from creation to storing) must be stored to an alternative location for manual entering. Either way, the Producer should get an order reference ID to give to a customer
+4) Consume orders inside a WebJob by moving the consume-code from the "GAB.Console.AutomaticInput"-project to the "GAB.OrderConsumerWebJob"-project.
 
-* Note the throughput
+5) In the consume WebJob, measure the throughput you have by dividing total number of orders by the time it takes to store them. You need to come up with a "orders per minute"-ratio, e.g. "349/sec". Use Trace to log this information.
 
-* Components: Order Producer, Order Consumer, Azure Storage, Azure Service Bus
+* Components: Order Producer, Domain, Order Consumer, Azure Storage, Service Bus
 
-Assignment #5 - Increase performance and throughput
+Assignment #xx - Increase performance and throughput
 
 * Think of ways to make orders travel faster through the service bus.
+
+* Measure throughputs when you make changes in order to assess the effect the changes have
 
 Areas for improvement might be: serialization, optimizing the scaling of the Producer and Consumer workers, switch between storage infrastructure, synchronous vs asynchronous
 

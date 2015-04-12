@@ -6,11 +6,11 @@
     using GAB.Domain;
     using GAB.Infrastructure.Azure;
 
-    public class OrderConsumer
+    public class OrdersConsumer : IOrdersConsumer
     {
         public void Consume(List<Order> orders)
         {
-            AzureOrderStorage azureOrderStorage = new AzureOrderStorage();
+            InMemoryOrderStorage orderStorage = new InMemoryOrderStorage();
 
             Stopwatch stopwatch = new Stopwatch();
 
@@ -18,11 +18,11 @@
             {
                 stopwatch.Start();
 
-                azureOrderStorage.Store(order);
+                orderStorage.Store(order);
 
                 stopwatch.Stop();
 
-                Trace.TraceInformation("Elapsed time in Azure storing order no. {0} was {1}.", order.OrderNo, stopwatch.Elapsed);
+                Trace.TraceInformation("Elapsed time in storing order no. {0} was {1}.", order.OrderNo, stopwatch.Elapsed);
             }
         }
     }

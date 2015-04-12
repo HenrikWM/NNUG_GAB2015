@@ -6,12 +6,12 @@ namespace GAB.Services.OrderProducer
 
     using GAB.Domain;
 
-    public class RandomOrderProducer
+    public class RandomOrdersProducer
     {
-        public IList<Order> ProduceRandomOrders(int numberOfOrders)
+        public IList<Order> Produce(int numberOfOrders)
         {
             UniqueRandomGenerator uniqueRandomGenerator = new UniqueRandomGenerator();
-
+            
             return
                 Builder<Order>.CreateListOfSize(numberOfOrders)
                               .All()

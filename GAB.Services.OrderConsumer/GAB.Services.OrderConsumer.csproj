@@ -39,8 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OrderConsumer.cs" />
+    <Compile Include="OrdersConsumer.cs" />
+    <Compile Include="IOrdersConsumer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimedOperation.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GAB.Domain\GAB.Domain.csproj">

@@ -44,7 +44,7 @@
   <ItemGroup>
     <Compile Include="OrderProducer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RandomOrderProducer.cs" />
+    <Compile Include="RandomOrdersProducer.cs" />
     <Compile Include="RandomStringGenerator.cs" />
   </ItemGroup>
   <ItemGroup>

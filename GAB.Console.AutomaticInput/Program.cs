@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Threading;
 
     using GAB.Domain;
     using GAB.Services.OrderConsumer;
@@ -14,9 +15,7 @@
 
         private static void Main(string[] args)
         {
-            // HandleManualInput(args)
-
-            HandleAutogenerationInput();
+            HandleAutomaticInput();
         }
 
         /// <summary>
@@ -24,43 +23,32 @@
         /// 
         /// ..\bin\Debug>GAB.Console.exe
         /// 
-        /// Press any key to quit...
         /// </summary>
-        private static void HandleAutogenerationInput()
+        private static void HandleAutomaticInput()
         {
             try
             {
                 OrderJsonSerializer orderJsonSerializer = new OrderJsonSerializer();
-              
-                RandomOrderProducer randomOrderProducer = new RandomOrderProducer();
 
-                OrderConsumer orderConsumer = new OrderConsumer();
+                RandomOrdersProducer randomOrdersProducer = new RandomOrdersProducer();
 
-                const int NumberOfOrders = 100;
+                OrdersConsumer ordersConsumer = new OrdersConsumer();
 
-                List<Order> orders = (List<Order>)randomOrderProducer.ProduceRandomOrders(NumberOfOrders);
+                const int OrdersPerSecond = 100;
                 
-                Stopwatch stopwatch = new Stopwatch();
-
-                stopwatch.Start();
-
-                orderConsumer.Consume(orders);
-
-                stopwatch.Stop();
+                List<Order> orders = (List<Order>)randomOrdersProducer.Produce(OrdersPerSecond);
 
                 Console.WriteLine("{0}Created orders: {1}", NewLine, orderJsonSerializer.Serialize(orders));
+                
+                double elapedSeconds = TimedOperation.Run(() => ordersConsumer.Consume(orders));
 
-                double throughputInMinutes = NumberOfOrders / stopwatch.Elapsed.TotalMinutes;
+                double throughputPerSecond = OrdersPerSecond / elapedSeconds;
 
-                Console.WriteLine("{0}Throughput: {1} orders/min", NewLine, Math.Round(throughputInMinutes, 0));
-
-                Console.WriteLine("{0}Press any key to quit...", NewLine);
-
-                Console.ReadLine();
+                Console.WriteLine("{0}Throughput: {1} orders/sec", NewLine, Math.Round(throughputPerSecond, 0));
             }
             catch (Exception e)
             {
-                Console.WriteLine("{0}An error occurred: {1}", NewLine, e.Message);
+                Trace.WriteLine(string.Format("{0}An error occurred: {1}", NewLine, e.Message));
             }
         }
     }

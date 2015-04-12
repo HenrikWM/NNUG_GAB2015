@@ -63,7 +63,7 @@
         private static void ParseArguments(string[] args)
         {
             if (args == null || args.Length > 5)
-                throw new InvalidOperationException("Wrong number of parameters. Should be 5.");
+                throw new InvalidOperationException("Invalid number of parameters. Should be 5.");
 
             if (args.Any())
             {
@@ -78,7 +78,7 @@
         private static string ParseArgument(string arg)
         {
             if (string.IsNullOrEmpty(arg))
-                throw new InvalidOperationException("An argument was empty.");
+                throw new InvalidOperationException("Argument was empty.");
 
             return arg;
         }
