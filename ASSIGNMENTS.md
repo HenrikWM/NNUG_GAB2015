@@ -51,36 +51,33 @@ You have already created two components that can produce orders. One handles man
 
 You have also started to implement the "Order Consumer"-component (GAB.Services.OrderConsumer) and "Order Producer"-component (GAB.Services.OrderProducer).
 
-Next you will alter the "GAB.Console.AutomaticInput"-application so that is uses Azure to store orders rather than in memory.
+Next you will alter the "GAB.Console.AutomaticInput"-application so that is uses Azure to store orders.
 
-1) Replace the class "InMemoryOrderStorage" with a new class called "AzureOrderStorage". 
+1) Replace the class "InMemoryOrderStorage" with a new class called "AzureOrderStorage".
 
-2) Implement the method "Store".
+2) Implement the method "Store" in "AzureOrderStorage"
+
 Examples of storage location (use one): Azure Sql, Azure Table Storage, Azure DocumentDB
 
-Definition of Done: You can now run the "GAB.Console.AutomaticInput"-application and watch generate orders and store them into an Azure storage location.
-
+Definition of Done: You can now run the "GAB.Console.AutomaticInput"-application and watch it generate orders and store them into an Azure storage location.
+Note that the throughput should decrease. You can use async in your storage-code in order to mitigate the decreased throughput.
 
 Assignment #xx - Create two Azure WebJobs that produces and consumes orders via the Service Bus
 
 * The Producer and Consumer should use the Service Bus topic "order dispatch".
 * The Producer puts orders onto the topic and the consumer subscribes to the topic for incoming orders 
 
-* Note the throughput
-
 Produce orders inside a WebJob by moving the produce-code from the "GAB.Console.AutomaticInput"-project to the "GAB.OrderProducerWebJob"-project.
 
-1) Move producer-code: 'randomOrdersProducer.Produce(OrdersPerSecond);'.
+1) Move the producer-code: 'randomOrdersProducer.Produce(OrdersPerSecond);' to the Producer WebJob's Program.cs.
 
-2) Wrap the code in a loop that called the Produce-method once per second.
+2) Wrap the moved code in a loop that calls the Produce-method once per second.
 
-3) Implement code that sends the orders onto a Service Bus topic called "order dispatch".
+3) Implement code that sends the produced orders onto a Service Bus topic called "order dispatch".
 
-4) Consume orders inside a WebJob by moving the consume-code from the "GAB.Console.AutomaticInput"-project to the "GAB.OrderConsumerWebJob"-project.
+4) Next, consume orders inside a WebJob by moving the consume-code from the "GAB.Console.AutomaticInput"-project to the "GAB.OrderConsumerWebJob"-project.
 
-5) In the consume WebJob, measure the throughput you have by dividing total number of orders by the time it takes to store them. You need to come up with a "orders per minute"-ratio, e.g. "349/sec". Use Trace to log this information.
-
-* Components: Order Producer, Domain, Order Consumer, Azure Storage, Service Bus
+Include the code that calculates throughput as well.
 
 Assignment #xx - Increase performance and throughput
 
