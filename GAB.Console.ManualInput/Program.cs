@@ -62,17 +62,35 @@
 
         private static void ParseArguments(string[] args)
         {
-            if (args == null || args.Length > 5)
+            if (args == null || args.Length == 0)
+            {
+                GetManualOrderEntry();
+                return;
+            }
+
+            if (args.Length != 5)
                 throw new InvalidOperationException("Invalid number of parameters. Should be 5.");
 
-            if (args.Any())
-            {
-                orderNo = ParseArgument(args[0]);
-                customerNo = ParseArgument(args[1]);
-                customerName = ParseArgument(args[2]);
-                orderItemNo = ParseArgument(args[3]);
-                orderItemName = ParseArgument(args[4]);
-            }
+            orderNo = ParseArgument(args[0]);
+            customerNo = ParseArgument(args[1]);
+            customerName = ParseArgument(args[2]);
+            orderItemNo = ParseArgument(args[3]);
+            orderItemName = ParseArgument(args[4]);
+        }
+
+        private static void GetManualOrderEntry()
+        {
+            orderNo = GetNewInfo("orderNo");
+            customerNo = GetNewInfo("customerNo");
+            customerName = GetNewInfo("customerName");
+            orderItemNo = GetNewInfo("orderItemNo");
+            orderItemName = GetNewInfo("orderItemName");
+        }
+
+        private static string GetNewInfo(string key)
+        {
+            Console.WriteLine("Please enter : {0}", key);
+            return Console.ReadLine();
         }
 
         private static string ParseArgument(string arg)
