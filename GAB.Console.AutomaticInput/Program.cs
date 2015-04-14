@@ -6,13 +6,10 @@
     using System.Threading;
 
     using GAB.Domain;
-    using GAB.Services.OrderConsumer;
     using GAB.Services.OrderProducer;
 
     class Program
     {
-        private const string NewLine = "\r\n";
-
         private static void Main(string[] args)
         {
             HandleAutomaticInput();
@@ -26,29 +23,56 @@
         /// </summary>
         private static void HandleAutomaticInput()
         {
+            const int OrdersToProduce = 100;
+
             try
             {
                 OrderJsonSerializer orderJsonSerializer = new OrderJsonSerializer();
 
                 RandomOrdersProducer randomOrdersProducer = new RandomOrdersProducer();
 
-                OrdersConsumer ordersConsumer = new OrdersConsumer();
-
-                const int OrdersPerSecond = 100;
+                OrderSender orderSender = new OrderSender();
                 
-                List<Order> orders = (List<Order>)randomOrdersProducer.Produce(OrdersPerSecond);
+                while (true)
+                {
+                    List<Order> orders = (List<Order>)randomOrdersProducer.Produce(OrdersToProduce);
 
-                Console.WriteLine("{0}Created orders: {1}", NewLine, orderJsonSerializer.Serialize(orders));
-                
-                double elapedSeconds = TimedOperation.Run(() => ordersConsumer.Consume(orders));
+                    Console.WriteLine(
+                        "{0}Created orders: {1}",
+                        FormattingConstants.NewLine,
+                        orderJsonSerializer.Serialize(orders));
 
-                double throughputPerSecond = OrdersPerSecond / elapedSeconds;
+                    orderSender.SendOrders(orders);
 
-                Console.WriteLine("{0}Throughput: {1} orders/sec", NewLine, Math.Round(throughputPerSecond, 0));
+                    Console.WriteLine(
+                        "{0}Sent {1} orders to the service bus topic.",
+                        FormattingConstants.NewLine,
+                        orders.Count);
+
+                    Thread.Sleep(TimeSpan.FromSeconds(1));
+
+                    // ## START - Flyttes til WebJob
+                    //double elapedSeconds = TimedOperation.Run(() => ordersConsumer.Consume(orders));
+
+                    //double throughputPerSecond = OrdersToProduce / elapedSeconds;
+
+                    //double throughputPerSecondRounded = Math.Round(throughputPerSecond, 2);
+
+                    // TODO: replace console.writeline with trace
+                    //Console.WriteLine(
+                    //    "{0}Throughput: {1} orders/sec",
+                    //    FormattingConstants.NewLine,
+                    //    throughputPerSecondRounded);
+                    // ## STOP - Flyttes til WebJob
+                }
             }
             catch (Exception e)
             {
-                Trace.WriteLine(string.Format("{0}An error occurred: {1}", NewLine, e.Message));
+                Trace.WriteLine(
+                    string.Format(
+                        "{0}An error occurred during producing orders: {1}",
+                        FormattingConstants.NewLine,
+                        e.Message));
             }
         }
     }

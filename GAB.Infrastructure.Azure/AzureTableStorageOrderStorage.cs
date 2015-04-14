@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Net;
+
 using GAB.Domain;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 
 namespace GAB.Infrastructure.Azure
 {
+    using System.Globalization;
+
     public class AzureTableStorageOrderStorage
     {
         static readonly CloudStorageAccount StorageAccount = Config.GetCloudStorageAccount("StorageConnectionString");
@@ -14,8 +16,7 @@ namespace GAB.Infrastructure.Azure
         static readonly CloudTable Table = TableClient.GetTableReference("orders");
 
         readonly OrderJsonSerializer _orderJsonSerializer = new OrderJsonSerializer();
-
-
+        
         public AzureTableStorageOrderStorage()
         {
             // Create the table if it doesn't exist.
@@ -26,8 +27,8 @@ namespace GAB.Infrastructure.Azure
         public void Store(Order order)
         {
             // Create a new order entity.
-            string partitionKey  = order.Customer.No.ToString();
-            string rowKey = order.OrderNo.ToString();
+            string partitionKey  = order.Customer.No.ToString(CultureInfo.InvariantCulture);
+            string rowKey = order.OrderNo.ToString(CultureInfo.InvariantCulture);
             string orderAsJson = _orderJsonSerializer.Serialize(order);
             DynamicTableEntity orderEntity = new DynamicTableEntity(partitionKey, rowKey);
             Dictionary<string, EntityProperty> properties = new Dictionary<string, EntityProperty>

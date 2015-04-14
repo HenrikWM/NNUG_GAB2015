@@ -1,7 +1,6 @@
 ﻿namespace GAB.Console.ManualInput
 {
     using System;
-    using System.Linq;
 
     using GAB.Domain;
     using GAB.Services.OrderProducer;
@@ -17,9 +16,7 @@
         private static string orderItemNo;
 
         private static string orderItemName;
-
-        private const string NewLine = "\r\n";
-
+        
         static void Main(string[] args)
         {
             HandleManualInput(args);
@@ -46,17 +43,25 @@
 
                 OrderProducer orderProducer = new OrderProducer();
 
+                OrderSender orderSender = new OrderSender();
+
                 Order order = orderProducer.Produce(orderNo, customerNo, customerName, orderItemNo, orderItemName);
 
-                Console.WriteLine("{0}Created order: {1}", NewLine, orderJsonSerializer.Serialize(order));
+                Console.WriteLine("{0}Created order: {1}", FormattingConstants.NewLine, orderJsonSerializer.Serialize(order));
 
-                Console.WriteLine("{0}Press any key to quit...", NewLine);
+                orderSender.SendOrder(order);
+
+                Console.WriteLine(
+                    "{0}Sent order to the service bus topic.",
+                    FormattingConstants.NewLine);
+
+                Console.WriteLine("{0}Press any key to quit...", FormattingConstants.NewLine);
 
                 Console.ReadLine();
             }
             catch (Exception e)
             {
-                Console.WriteLine("{0}An error occurred: {1}", NewLine, e.Message);
+                Console.WriteLine("{0}An error occurred: {1}", FormattingConstants.NewLine, e.Message);
             }
         }
 

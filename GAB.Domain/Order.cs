@@ -1,15 +1,21 @@
 ﻿namespace GAB.Domain
 {
     using System;
+    using System.Runtime.Serialization;
 
+    [DataContract]   
     public class Order
     {
+        [DataMember(Name = "customer")]
         public Customer Customer { get; set; }
 
+        [DataMember(Name = "orderItem")]
         public OrderItem OrderItem { get; set; }
 
+        [DataMember(Name = "created")]
         public DateTime Created { get; set; }
 
+        [DataMember(Name = "orderNo")]
         public int OrderNo { get; set; }
 
         public Order()

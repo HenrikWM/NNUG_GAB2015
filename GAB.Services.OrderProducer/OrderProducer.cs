@@ -6,10 +6,14 @@
 
     public class OrderProducer
     {
-        public Order Produce(string orderNo, string customerNo, string customerName, string orderItemNo, string orderItemName)
+        public Order Produce(
+            string orderNo,
+            string customerNo,
+            string customerName,
+            string orderItemNo,
+            string orderItemName)
         {
-            return new Order
-            {
+            return new Order {
                 OrderNo = int.Parse(orderNo),
                 Created = DateTime.Now,
                 Customer = new Customer { No = int.Parse(customerNo), Name = customerName },

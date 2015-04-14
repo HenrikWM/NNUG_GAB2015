@@ -12,18 +12,21 @@
         {
             //InMemoryOrderStorage orderStorage = new InMemoryOrderStorage();
             AzureTableStorageOrderStorage orderStorage = new AzureTableStorageOrderStorage();
-
-            Stopwatch stopwatch = new Stopwatch();
-
+            
             foreach (Order order in orders)
             {
+                Stopwatch stopwatch = new Stopwatch();
+
                 stopwatch.Start();
 
                 orderStorage.Store(order);
 
                 stopwatch.Stop();
 
-                Trace.TraceInformation("Elapsed time in storing order no. {0} was {1}.", order.OrderNo, stopwatch.Elapsed);
+                Trace.TraceInformation(
+                    "Elapsed time during storing order no. {0} was {1} ms.",
+                    order.OrderNo,
+                    stopwatch.Elapsed.Milliseconds);
             }
         }
     }

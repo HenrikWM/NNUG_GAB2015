@@ -15,7 +15,7 @@
 
             stopwatch.Stop();
 
-            return stopwatch.Elapsed.TotalSeconds;
+            return stopwatch.Elapsed.Milliseconds;
         }
     }
 }
