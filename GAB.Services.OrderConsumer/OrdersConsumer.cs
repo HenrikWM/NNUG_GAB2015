@@ -10,7 +10,8 @@
     {
         public void Consume(List<Order> orders)
         {
-            InMemoryOrderStorage orderStorage = new InMemoryOrderStorage();
+            //InMemoryOrderStorage orderStorage = new InMemoryOrderStorage();
+            AzureTableStorageOrderStorage orderStorage = new AzureTableStorageOrderStorage();
 
             Stopwatch stopwatch = new Stopwatch();
 
