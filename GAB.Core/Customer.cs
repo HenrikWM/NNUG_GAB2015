@@ -1,9 +1,9 @@
-﻿namespace GAB.Domain
+﻿namespace GAB.Core
 {
     using System.Runtime.Serialization;
 
     [DataContract]
-    public class OrderItem
+    public class Customer
     {
         [DataMember(Name = "no")]
         public int No { get; set; }
@@ -11,7 +11,7 @@
         [DataMember(Name = "name")]
         public string Name { get; set; }
 
-        public OrderItem()
+        public Customer()
         {
             No = 0;
 

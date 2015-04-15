@@ -7,7 +7,7 @@ using Microsoft.WindowsAzure.Storage;
 
 namespace GAB.Infrastructure.Azure
 {
-    using GAB.Domain;
+    using GAB.Core;
 
     using Microsoft.Azure;
 
@@ -46,7 +46,8 @@ namespace GAB.Infrastructure.Azure
                 value = CloudConfigurationManager.GetSetting(key);
             }
 
-            value = ConfigurationManager.AppSettings[key];
+            if (string.IsNullOrEmpty(value))
+                value = ConfigurationManager.AppSettings[key];
 
             Trace.TraceInformation("{0}Fetched setting '{1}': '{2}'", FormattingConstants.NewLine, key, value);
 

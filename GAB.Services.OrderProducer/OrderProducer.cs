@@ -2,7 +2,7 @@
 {
     using System;
 
-    using GAB.Domain;
+    using GAB.Core;
 
     public class OrderProducer
     {

@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Diagnostics;
 
-    using GAB.Domain;
+    using GAB.Core;
     using GAB.Infrastructure.Azure;
 
     public class OrdersConsumer : IOrdersConsumer

@@ -4,7 +4,7 @@ namespace GAB.Services.OrderProducer
 
     using FizzWare.NBuilder;
 
-    using GAB.Domain;
+    using GAB.Core;
 
     public class RandomOrdersProducer
     {

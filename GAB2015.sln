@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAB.Domain", "GAB.Domain\GAB.Domain.csproj", "{B7342C14-38D7-4D89-BAAC-99B154EA32E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAB.Core", "GAB.Core\GAB.Core.csproj", "{B7342C14-38D7-4D89-BAAC-99B154EA32E0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAB.Console.ManualInput", "GAB.Console.ManualInput\GAB.Console.ManualInput.csproj", "{DF161957-97C7-4C30-8E3C-FAA74F574916}"
 EndProject
@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAB.OrderConsumerWebJob", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - Application", "02 - Application", "{998813A7-E5C3-4E17-A999-AC45B3AEB260}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - Domain", "03 - Domain", "{76AC1A67-0C04-44E1-9019-4203114DFFE2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - Core", "03 - Core", "{76AC1A67-0C04-44E1-9019-4203114DFFE2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - Infrastructure", "04 - Infrastructure", "{2D679F51-ADD9-4573-A6DC-1B3E428A9615}"
 EndProject

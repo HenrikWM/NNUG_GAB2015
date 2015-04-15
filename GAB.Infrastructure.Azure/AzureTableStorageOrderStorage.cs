@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 
-using GAB.Domain;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 
 namespace GAB.Infrastructure.Azure
 {
     using System.Globalization;
+
+    using GAB.Core;
 
     public class AzureTableStorageOrderStorage
     {

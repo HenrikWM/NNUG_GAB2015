@@ -48,9 +48,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GAB.Domain\GAB.Domain.csproj">
+    <ProjectReference Include="..\GAB.Core\GAB.Core.csproj">
       <Project>{B7342C14-38D7-4D89-BAAC-99B154EA32E0}</Project>
-      <Name>GAB.Domain</Name>
+      <Name>GAB.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\GAB.Services.OrderConsumer\GAB.Services.OrderConsumer.csproj">
       <Project>{91D16675-4F2A-44BC-8973-EDD57CED1A36}</Project>

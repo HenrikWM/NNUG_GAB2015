@@ -1,6 +1,6 @@
 ﻿namespace GAB.Services.OrderProducer
 {
-    using GAB.Domain;
+    using GAB.Core;
 
     public interface IOrderProducer
     {

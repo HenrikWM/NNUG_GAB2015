@@ -2,7 +2,7 @@
 {
     using System;
 
-    using GAB.Domain;
+    using GAB.Core;
     using GAB.Services.OrderProducer;
 
     class Program

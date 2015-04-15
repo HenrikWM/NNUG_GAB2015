@@ -56,9 +56,9 @@
       <Project>{7E69EB07-DDD7-4094-BB24-D0FDE8D07ABE}</Project>
       <Name>GAB.Services.OrderProducer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GAB.Domain\GAB.Domain.csproj">
+    <ProjectReference Include="..\GAB.Core\GAB.Core.csproj">
       <Project>{B7342C14-38D7-4D89-BAAC-99B154EA32E0}</Project>
-      <Name>GAB.Domain</Name>
+      <Name>GAB.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

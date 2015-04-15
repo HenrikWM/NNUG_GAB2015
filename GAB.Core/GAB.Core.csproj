@@ -7,8 +7,8 @@
     <ProjectGuid>{B7342C14-38D7-4D89-BAAC-99B154EA32E0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GAB.Domain</RootNamespace>
-    <AssemblyName>GAB.Domain</AssemblyName>
+    <RootNamespace>GAB.Core</RootNamespace>
+    <AssemblyName>GAB.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -52,9 +52,9 @@
     <Compile Include="RandomStringGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GAB.Domain\GAB.Domain.csproj">
+    <ProjectReference Include="..\GAB.Core\GAB.Core.csproj">
       <Project>{B7342C14-38D7-4D89-BAAC-99B154EA32E0}</Project>
-      <Name>GAB.Domain</Name>
+      <Name>GAB.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\GAB.Infrastructure.Azure\GAB.Infrastructure.Azure.csproj">
       <Project>{FC7DEFDB-4AA2-467E-B210-480933D35FE4}</Project>
@@ -62,7 +62,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,4 @@
-﻿namespace GAB.Domain
+﻿namespace GAB.Core
 {
     public static class FormattingConstants
     {

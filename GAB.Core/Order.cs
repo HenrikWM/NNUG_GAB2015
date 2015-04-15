@@ -1,4 +1,4 @@
-﻿namespace GAB.Domain
+﻿namespace GAB.Core
 {
     using System;
     using System.Runtime.Serialization;

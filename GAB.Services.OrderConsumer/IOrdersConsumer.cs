@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    using GAB.Domain;
+    using GAB.Core;
 
     public interface IOrdersConsumer
     {

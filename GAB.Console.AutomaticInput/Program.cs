@@ -5,7 +5,7 @@
     using System.Diagnostics;
     using System.Threading;
 
-    using GAB.Domain;
+    using GAB.Core;
     using GAB.Services.OrderProducer;
 
     class Program

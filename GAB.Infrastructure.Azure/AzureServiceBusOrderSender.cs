@@ -3,7 +3,7 @@ namespace GAB.Infrastructure.Azure
     using System.Collections.Generic;
     using System.Diagnostics;
 
-    using GAB.Domain;
+    using GAB.Core;
 
     using Microsoft.ServiceBus;
     using Microsoft.ServiceBus.Messaging;
