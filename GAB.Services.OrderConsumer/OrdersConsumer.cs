@@ -8,11 +8,12 @@
 
     public class OrdersConsumer : IOrdersConsumer
     {
+        //private readonly InMemoryOrderStorage orderStorage = new InMemoryOrderStorage();
+        
+        private readonly AzureTableStorageOrderStorage orderStorage = new AzureTableStorageOrderStorage();
+        
         public void Consume(List<Order> orders)
         {
-            //InMemoryOrderStorage orderStorage = new InMemoryOrderStorage();
-            AzureTableStorageOrderStorage orderStorage = new AzureTableStorageOrderStorage();
-            
             foreach (Order order in orders)
             {
                 Stopwatch stopwatch = new Stopwatch();
