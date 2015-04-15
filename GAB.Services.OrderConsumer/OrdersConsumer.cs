@@ -4,14 +4,21 @@
     using System.Diagnostics;
 
     using GAB.Core;
-    using GAB.Infrastructure.Azure;
+    using GAB.Infrastructure.Azure.Consumer;
 
     public class OrdersConsumer : IOrdersConsumer
     {
         //private readonly InMemoryOrderStorage orderStorage = new InMemoryOrderStorage();
         
         private readonly AzureTableStorageOrderStorage orderStorage = new AzureTableStorageOrderStorage();
-        
+
+        public void Consume(Order order)
+        {
+            List<Order> orders = new List<Order> { order };
+
+            Consume(orders);
+        }
+
         public void Consume(List<Order> orders)
         {
             foreach (Order order in orders)

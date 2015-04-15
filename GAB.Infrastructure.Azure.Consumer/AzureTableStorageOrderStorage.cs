@@ -1,20 +1,19 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Table;
-
-namespace GAB.Infrastructure.Azure
+﻿namespace GAB.Infrastructure.Azure.Consumer
 {
+    using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Globalization;
 
     using GAB.Core;
+
+    using Microsoft.WindowsAzure.Storage;
+    using Microsoft.WindowsAzure.Storage.Table;
 
     public class AzureTableStorageOrderStorage
     {
         static readonly CloudStorageAccount StorageAccount = Config.GetCloudStorageAccount("StorageConnectionString");
         static readonly CloudTableClient TableClient = StorageAccount.CreateCloudTableClient();
-        static readonly CloudTable Table = TableClient.GetTableReference("orders");
+        static readonly CloudTable Table = TableClient.GetTableReference(TableStorageConstants.OrdersTableName);
 
         readonly OrderJsonSerializer _orderJsonSerializer = new OrderJsonSerializer();
         

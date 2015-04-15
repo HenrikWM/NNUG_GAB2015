@@ -48,10 +48,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GAB.Services.OrderConsumer\GAB.Services.OrderConsumer.csproj">
-      <Project>{91D16675-4F2A-44BC-8973-EDD57CED1A36}</Project>
-      <Name>GAB.Services.OrderConsumer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\GAB.Services.OrderProducer\GAB.Services.OrderProducer.csproj">
       <Project>{7E69EB07-DDD7-4094-BB24-D0FDE8D07ABE}</Project>
       <Name>GAB.Services.OrderProducer</Name>

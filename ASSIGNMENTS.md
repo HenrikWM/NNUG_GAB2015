@@ -34,6 +34,9 @@ If you are going to follow all of the steps in this assignment, then make sure y
 
 [https://aws.amazon.com/blogs/aws/sqs_super_queue/](https://aws.amazon.com/blogs/aws/sqs_super_queue/)
 
+https://msdn.microsoft.com/en-us/library/azure/hh528527.aspx
+
+
 ### Questions?
 
 Contact us:

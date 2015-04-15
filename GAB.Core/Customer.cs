@@ -1,7 +1,9 @@
 ﻿namespace GAB.Core
 {
+    using System;
     using System.Runtime.Serialization;
 
+    [Serializable]
     [DataContract]
     public class Customer
     {

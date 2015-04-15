@@ -1,4 +1,4 @@
-﻿namespace GAB.Infrastructure.Azure
+﻿namespace GAB.Infrastructure.Azure.Consumer
 {
     using System.Collections.Generic;
 

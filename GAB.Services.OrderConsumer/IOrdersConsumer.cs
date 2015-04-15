@@ -6,6 +6,8 @@
 
     public interface IOrdersConsumer
     {
+        void Consume(Order order);
+
         void Consume(List<Order> orders);
     }
 }

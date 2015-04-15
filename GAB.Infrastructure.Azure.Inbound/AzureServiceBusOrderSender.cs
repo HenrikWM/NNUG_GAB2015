@@ -1,4 +1,4 @@
-namespace GAB.Infrastructure.Azure
+namespace GAB.Infrastructure.Azure.Inbound
 {
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -11,9 +11,7 @@ namespace GAB.Infrastructure.Azure
     public class AzureServiceBusOrderSender
     {
         private readonly MessageSender sender;
-
-        private const string TopicName = "order-dispatch";
-
+        
         public AzureServiceBusOrderSender()
         {
             string keyName = Config.GetConfigurationSetting("ServiceBusKeyName");
@@ -26,21 +24,28 @@ namespace GAB.Infrastructure.Azure
 
             MessagingFactory messagingFactory = MessagingFactory.Create(baseAddress, tokenProvider);
 
-            sender = messagingFactory.CreateMessageSender(TopicName);
+            sender = messagingFactory.CreateMessageSender(ServiceBusConstants.OrderDispatchTopicName);
         }
 
         public void SendOrders(List<Order> orders)
         {
             IEnumerable<BrokeredMessage> batchOfOrders = CreateBatchOfMessages(orders);
 
-            Trace.TraceInformation("{0}Sending batch of {1} orders to topic '{2}'", FormattingConstants.NewLine, orders.Count, TopicName);
+            Trace.TraceInformation(
+                "{0}Sending batch of {1} orders to topic '{2}'",
+                FormattingConstants.NewLine,
+                orders.Count,
+                ServiceBusConstants.OrderDispatchTopicName);
 
             sender.SendBatch(batchOfOrders);
         }
 
         public void SendOrder(Order order)
         {
-            Trace.TraceInformation("{0}Sending one order to topic '{1}'", FormattingConstants.NewLine, TopicName);
+            Trace.TraceInformation(
+                "{0}Sending one order to topic '{1}'",
+                FormattingConstants.NewLine,
+                ServiceBusConstants.OrderDispatchTopicName);
 
             sender.Send(new BrokeredMessage(order));
         }

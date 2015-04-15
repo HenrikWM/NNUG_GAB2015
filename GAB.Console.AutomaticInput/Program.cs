@@ -15,15 +15,13 @@
             HandleAutomaticInput();
         }
 
-        /// <summary>
-        /// Sample usage from console:
-        /// 
-        /// ..\bin\Debug>GAB.Console.exe
-        /// 
-        /// </summary>
         private static void HandleAutomaticInput()
         {
             const int OrdersToProduce = 100;
+
+            const int SecondsToSleep = 1;
+
+            TimeSpan sleepTime = TimeSpan.FromSeconds(SecondsToSleep);
 
             try
             {
@@ -32,11 +30,7 @@
                 RandomOrdersProducer randomOrdersProducer = new RandomOrdersProducer();
 
                 OrderSender orderSender = new OrderSender();
-
-                const int SecondsToSleep = 1;
-
-                TimeSpan sleepTime = TimeSpan.FromSeconds(SecondsToSleep);
-
+                
                 while (true)
                 {
                     List<Order> orders = (List<Order>)randomOrdersProducer.Produce(OrdersToProduce);
@@ -55,20 +49,6 @@
                         SecondsToSleep);
 
                     Thread.Sleep(sleepTime);
-
-                    // ## START - Flyttes til WebJob
-                    //double elapedSeconds = TimedOperation.Run(() => ordersConsumer.Consume(orders));
-
-                    //double throughputPerSecond = OrdersToProduce / elapedSeconds;
-
-                    //double throughputPerSecondRounded = Math.Round(throughputPerSecond, 2);
-
-                    // TODO: replace console.writeline with trace
-                    //Console.WriteLine(
-                    //    "{0}Throughput: {1} orders/sec",
-                    //    FormattingConstants.NewLine,
-                    //    throughputPerSecondRounded);
-                    // ## STOP - Flyttes til WebJob
                 }
             }
             catch (Exception e)

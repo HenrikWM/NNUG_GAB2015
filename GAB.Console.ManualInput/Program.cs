@@ -22,16 +22,6 @@
             HandleManualInput(args);
         }
 
-        /// <summary>
-        /// Sample usage from console:
-        /// 
-        /// ..\bin\Debug>GAB.Console.exe 1 999 "John Doe" 12345 "Dog food"
-        /// 
-        /// Created order: {"Customer":{"No":999,"Name":"John Doe"},"OrderItem":{"No":12345,"Name":"Dog food"},"Created":"2015-04-10T14:45:56.7176004+02:00","OrderNo":1}
-        /// 
-        /// Press any key to quit...
-        /// </summary>
-        /// <param name="args"></param>
         private static void HandleManualInput(string[] args)
         {
             try
@@ -47,10 +37,12 @@
 
                 Order order = orderProducer.Produce(orderNo, customerNo, customerName, orderItemNo, orderItemName);
 
-                Console.WriteLine("{0}Created order: {1}", FormattingConstants.NewLine, orderJsonSerializer.Serialize(order));
+                string serializedOrder = orderJsonSerializer.Serialize(order);
+
+                Console.WriteLine("{0}Created order: {1}", FormattingConstants.NewLine, serializedOrder);
 
                 orderSender.SendOrder(order);
-
+                
                 Console.WriteLine(
                     "{0}Sent order to the service bus topic.",
                     FormattingConstants.NewLine);

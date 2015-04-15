@@ -1,5 +1,6 @@
 namespace GAB.Services.OrderProducer
 {
+    using System;
     using System.Collections.Generic;
 
     using FizzWare.NBuilder;
@@ -20,6 +21,7 @@ namespace GAB.Services.OrderProducer
                               .With(o => o.Customer.Name = RandomStringGenerator.GetRandomString())
                               .With(o => o.OrderItem.No = uniqueRandomGenerator.Next(0, 999999999))
                               .With(o => o.OrderItem.Name = RandomStringGenerator.GetRandomString())
+                              .With(o => o.Created = DateTime.Now)
                               .Build();
         }
     }

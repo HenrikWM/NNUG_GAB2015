@@ -56,9 +56,9 @@
       <Project>{B7342C14-38D7-4D89-BAAC-99B154EA32E0}</Project>
       <Name>GAB.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GAB.Infrastructure.Azure\GAB.Infrastructure.Azure.csproj">
+    <ProjectReference Include="..\GAB.Infrastructure.Azure.Inbound\GAB.Infrastructure.Azure.Inbound.csproj">
       <Project>{FC7DEFDB-4AA2-467E-B210-480933D35FE4}</Project>
-      <Name>GAB.Infrastructure.Azure</Name>
+      <Name>GAB.Infrastructure.Azure.Inbound</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
