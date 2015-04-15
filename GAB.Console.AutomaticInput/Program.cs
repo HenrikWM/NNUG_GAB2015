@@ -32,7 +32,11 @@
                 RandomOrdersProducer randomOrdersProducer = new RandomOrdersProducer();
 
                 OrderSender orderSender = new OrderSender();
-                
+
+                const int SecondsToSleep = 1;
+
+                TimeSpan sleepTime = TimeSpan.FromSeconds(SecondsToSleep);
+
                 while (true)
                 {
                     List<Order> orders = (List<Order>)randomOrdersProducer.Produce(OrdersToProduce);
@@ -45,11 +49,12 @@
                     orderSender.SendOrders(orders);
 
                     Console.WriteLine(
-                        "{0}Sent {1} orders to the service bus topic.",
+                        "{0}Sent {1} orders to the service bus topic.{0}Sleeping for {2} seconds...",
                         FormattingConstants.NewLine,
-                        orders.Count);
+                        orders.Count,
+                        SecondsToSleep);
 
-                    Thread.Sleep(TimeSpan.FromSeconds(1));
+                    Thread.Sleep(sleepTime);
 
                     // ## START - Flyttes til WebJob
                     //double elapedSeconds = TimedOperation.Run(() => ordersConsumer.Consume(orders));
