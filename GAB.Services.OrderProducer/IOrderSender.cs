@@ -3,20 +3,11 @@ namespace GAB.Services.OrderProducer
     using System.Collections.Generic;
 
     using GAB.Core;
-    using GAB.Infrastructure.Azure.Producer;
 
-    public class OrderSender 
+    public interface IOrderSender
     {
-        readonly AzureServiceBusOrderSender azureServiceBusOrderSender = new AzureServiceBusOrderSender();
+        void SendOrders(List<Order> orders);
 
-        public void SendOrders(List<Order> orders)
-        {
-            azureServiceBusOrderSender.SendOrders(orders);
-        }
-
-        public void SendOrder(Order order)
-        {
-            azureServiceBusOrderSender.SendOrder(order);
-        }
+        void SendOrder(Order order);
     }
 }

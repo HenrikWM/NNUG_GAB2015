@@ -4,15 +4,16 @@ namespace GAB.Infrastructure.Azure.Producer
     using System.Diagnostics;
 
     using GAB.Core;
+    using GAB.Services.OrderProducer;
 
     using Microsoft.ServiceBus;
     using Microsoft.ServiceBus.Messaging;
 
-    public class AzureServiceBusOrderSender
+    public class AzureServiceBusTopicOrderSender : IOrderSender
     {
         private readonly MessageSender sender;
         
-        public AzureServiceBusOrderSender()
+        public AzureServiceBusTopicOrderSender()
         {
             string keyName = Config.GetConfigurationSetting("ServiceBusKeyName");
 

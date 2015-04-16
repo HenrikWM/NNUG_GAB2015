@@ -3,6 +3,7 @@
     using System;
 
     using GAB.Core;
+    using GAB.Infrastructure.Azure.Producer;
     using GAB.Services.OrderProducer;
 
     class Program
@@ -30,7 +31,8 @@
 
                 OrderProducer orderProducer = new OrderProducer();
 
-                OrderSender orderSender = new OrderSender();
+                // Assignment #1 IOrderStorage orderStorage = new InMemoryOrderStorage()
+                IOrderSender orderSender = new AzureServiceBusTopicOrderSender();
 
                 Order order = orderProducer.Produce(orderNo, customerNo, customerName, orderItemNo, orderItemName);
 

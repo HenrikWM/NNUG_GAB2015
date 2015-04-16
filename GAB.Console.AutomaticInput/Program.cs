@@ -6,6 +6,7 @@
     using System.Threading;
 
     using GAB.Core;
+    using GAB.Infrastructure.Azure.Producer;
     using GAB.Services.OrderProducer;
 
     class Program
@@ -27,7 +28,7 @@
             {
                 RandomOrdersProducer randomOrdersProducer = new RandomOrdersProducer();
 
-                OrderSender orderSender = new OrderSender();
+                IOrderSender orderSender = new AzureServiceBusTopicOrderSender();
                 
                 while (true)
                 {
