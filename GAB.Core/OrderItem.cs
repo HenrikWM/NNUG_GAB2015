@@ -19,5 +19,10 @@
 
             Name = string.Empty;
         }
+
+        public override string ToString()
+        {
+            return string.Format("No: {0}, Name: {1}", No, Name);
+        }
     }
 }

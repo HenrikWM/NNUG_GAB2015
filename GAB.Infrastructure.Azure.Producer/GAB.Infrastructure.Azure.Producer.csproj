@@ -7,8 +7,8 @@
     <ProjectGuid>{FC7DEFDB-4AA2-467E-B210-480933D35FE4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GAB.Infrastructure.Azure.Inbound</RootNamespace>
-    <AssemblyName>GAB.Infrastructure.Azure.Inbound</AssemblyName>
+    <RootNamespace>GAB.Infrastructure.Azure.Producer</RootNamespace>
+    <AssemblyName>GAB.Infrastructure.Azure.Producer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

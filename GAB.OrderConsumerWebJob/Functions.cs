@@ -4,27 +4,43 @@ using Microsoft.Azure.WebJobs;
 
 namespace GAB.OrderConsumerWebJob
 {
+    using System;
+
     using GAB.Core;
     using GAB.Infrastructure.Azure;
     using GAB.Services.OrderConsumer;
 
+    using Microsoft.ServiceBus.Messaging;
+
     public class Functions
     {
         public static void ProcessTopicMessage(
-            [ServiceBusTrigger(ServiceBusConstants.OrderDispatchTopicName, ServiceBusConstants.SubscriptionName)] string message,
+            [ServiceBusTrigger(ServiceBusConstants.OrderDispatchTopicName, ServiceBusConstants.SubscriptionName)] BrokeredMessage message,
+            [Table(TableStorageConstants.OrdersTableName)] ICollector<Order> tableBinding,
             TextWriter log)
         {
-            //OrderJsonDeserializer OrderJsonDeserializer = new OrderJsonDeserializer();
-            
-            //OrdersConsumer OrderConsumer = new OrdersConsumer();
+            try
+            {
+                double elapsedTimeInMilliseconds = TimedOperation.Run(() => ProcessOrderMessage(message, tableBinding, log));
+                
+                log.WriteLine(
+                    "Done processing order message {0}. Took {1} ms",
+                    message,
+                    elapsedTimeInMilliseconds);
+            }
+            catch (Exception e)
+            {
+                log.WriteLine("Error occurred during processing of an order message. Error: {0}. Message: {1}", e.Message, message);
+            }
+        }
 
-            log.WriteLine("{0}Process order {1}", FormattingConstants.NewLine, message);
+        private static void ProcessOrderMessage(BrokeredMessage message, ICollector<Order> tableBinding, TextWriter log)
+        {
+            log.WriteLine("Processing order message {0}", message);
 
-            //Order order = OrderJsonDeserializer.Deserialize(message);
+            Order order = message.GetBody<Order>();
 
-            //TimedOperation.Run(() => OrderConsumer.Consume(order));
-
-            //log.WriteLine("{0}Processed order no. {1}", FormattingConstants.NewLine, order.OrderNo);
+            tableBinding.Add(order);
         }
     }
 }

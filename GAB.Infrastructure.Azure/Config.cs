@@ -22,7 +22,8 @@ namespace GAB.Infrastructure.Azure
             }
             catch (Exception e)
             {
-                Trace.WriteLine(string.Format("{0}An error occurred: {1}", FormattingConstants.NewLine, e.Message));
+                Trace.WriteLine(
+                    string.Format("{0}An error occurred: {1}", TraceLinePrefixer.GetConsoleLinePrefix(), e.Message));
                 throw;
             }
         }
@@ -49,7 +50,7 @@ namespace GAB.Infrastructure.Azure
             if (string.IsNullOrEmpty(value))
                 value = ConfigurationManager.AppSettings[key];
 
-            Trace.TraceInformation("{0}Fetched setting '{1}': '{2}'", FormattingConstants.NewLine, key, value);
+            Trace.TraceInformation("{0}Fetched setting '{1}': '{2}'", TraceLinePrefixer.GetConsoleLinePrefix(), key, value);
 
             return value;
         }

@@ -26,10 +26,7 @@
         {
             try
             {
-                // Arguments: Order No. (1), Customer No. (2), Customer Name (3), Order Item No. (4), Order Item Name (5)
                 ParseArguments(args);
-
-                OrderJsonSerializer orderJsonSerializer = new OrderJsonSerializer();
 
                 OrderProducer orderProducer = new OrderProducer();
 
@@ -37,23 +34,21 @@
 
                 Order order = orderProducer.Produce(orderNo, customerNo, customerName, orderItemNo, orderItemName);
 
-                string serializedOrder = orderJsonSerializer.Serialize(order);
-
-                Console.WriteLine("{0}Created order: {1}", FormattingConstants.NewLine, serializedOrder);
+                Console.WriteLine("{0}Created order: {0}{1}", TraceLinePrefixer.GetConsoleLinePrefix(), order);
 
                 orderSender.SendOrder(order);
                 
                 Console.WriteLine(
                     "{0}Sent order to the service bus topic.",
-                    FormattingConstants.NewLine);
+                    TraceLinePrefixer.GetConsoleLinePrefix());
 
-                Console.WriteLine("{0}Press any key to quit...", FormattingConstants.NewLine);
+                Console.WriteLine("{0}Press any key to quit...", TraceLinePrefixer.GetConsoleLinePrefix());
 
                 Console.ReadLine();
             }
             catch (Exception e)
             {
-                Console.WriteLine("{0}An error occurred: {1}", FormattingConstants.NewLine, e.Message);
+                Console.WriteLine("{0}An error occurred: {1}", TraceLinePrefixer.GetConsoleLinePrefix(), e.Message);
             }
         }
 

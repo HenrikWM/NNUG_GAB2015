@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7E69EB07-DDD7-4094-BB24-D0FDE8D07ABE}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{E8A28655-F733-495E-9038-17176DC17C7C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GAB.Services.OrderProducer</RootNamespace>
-    <AssemblyName>GAB.Services.OrderProducer</AssemblyName>
+    <RootNamespace>GAB.Console.ConsumerOutput</RootNamespace>
+    <AssemblyName>GAB.Console.ConsumerOutput</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,13 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FizzWare.NBuilder">
-      <HintPath>..\packages\NBuilder.3.0.1.1\lib\FizzWare.NBuilder.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,28 +41,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IOrderProducer.cs" />
-    <Compile Include="IOrderSender.cs" />
-    <Compile Include="OrderProducer.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RandomOrdersProducer.cs" />
-    <Compile Include="RandomStringGenerator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GAB.Core\GAB.Core.csproj">
       <Project>{B7342C14-38D7-4D89-BAAC-99B154EA32E0}</Project>
       <Name>GAB.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GAB.Infrastructure.Azure.Producer\GAB.Infrastructure.Azure.Producer.csproj">
-      <Project>{FC7DEFDB-4AA2-467E-B210-480933D35FE4}</Project>
-      <Name>GAB.Infrastructure.Azure.Producer</Name>
+    <ProjectReference Include="..\GAB.Services.OrderConsumer\GAB.Services.OrderConsumer.csproj">
+      <Project>{91D16675-4F2A-44BC-8973-EDD57CED1A36}</Project>
+      <Name>GAB.Services.OrderConsumer</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

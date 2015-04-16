@@ -3,7 +3,7 @@ namespace GAB.Services.OrderProducer
     using System.Collections.Generic;
 
     using GAB.Core;
-    using GAB.Infrastructure.Azure.Inbound;
+    using GAB.Infrastructure.Azure.Producer;
 
     public class OrderSender 
     {

@@ -36,6 +36,7 @@ If you are going to follow all of the steps in this assignment, then make sure y
 
 https://msdn.microsoft.com/en-us/library/azure/hh528527.aspx
 
+http://www.kcode.me/post/azure-service-bus-brokeredmessage-serialization
 
 ### Questions?
 

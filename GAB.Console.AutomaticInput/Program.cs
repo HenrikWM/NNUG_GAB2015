@@ -17,7 +17,7 @@
 
         private static void HandleAutomaticInput()
         {
-            const int OrdersToProduce = 100;
+            const int OrdersToProducePerSecond = 10;
 
             const int SecondsToSleep = 1;
 
@@ -25,27 +25,24 @@
 
             try
             {
-                OrderJsonSerializer orderJsonSerializer = new OrderJsonSerializer();
-
                 RandomOrdersProducer randomOrdersProducer = new RandomOrdersProducer();
 
                 OrderSender orderSender = new OrderSender();
                 
                 while (true)
                 {
-                    List<Order> orders = (List<Order>)randomOrdersProducer.Produce(OrdersToProduce);
+                    List<Order> orders = (List<Order>)randomOrdersProducer.Produce(OrdersToProducePerSecond);
 
                     Console.WriteLine(
-                        "{0}Created orders: {1}",
-                        FormattingConstants.NewLine,
-                        orderJsonSerializer.Serialize(orders));
+                        "{0}Created {1} orders",
+                        TraceLinePrefixer.GetConsoleLinePrefix(),
+                        orders.Count);
 
                     orderSender.SendOrders(orders);
 
                     Console.WriteLine(
-                        "{0}Sent {1} orders to the service bus topic.{0}Sleeping for {2} seconds...",
-                        FormattingConstants.NewLine,
-                        orders.Count,
+                        "{0}Sent the orders to the service bus topic. Sleeping for {1} seconds...",
+                        TraceLinePrefixer.GetConsoleLinePrefix(),
                         SecondsToSleep);
 
                     Thread.Sleep(sleepTime);
@@ -56,7 +53,7 @@
                 Trace.WriteLine(
                     string.Format(
                         "{0}An error occurred during producing orders: {1}",
-                        FormattingConstants.NewLine,
+                        TraceLinePrefixer.GetConsoleLinePrefix(),
                         e.Message));
             }
         }

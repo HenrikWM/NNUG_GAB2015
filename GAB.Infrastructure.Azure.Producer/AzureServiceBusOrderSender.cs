@@ -1,4 +1,4 @@
-namespace GAB.Infrastructure.Azure.Inbound
+namespace GAB.Infrastructure.Azure.Producer
 {
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -33,7 +33,7 @@ namespace GAB.Infrastructure.Azure.Inbound
 
             Trace.TraceInformation(
                 "{0}Sending batch of {1} orders to topic '{2}'",
-                FormattingConstants.NewLine,
+                TraceLinePrefixer.GetConsoleLinePrefix(),
                 orders.Count,
                 ServiceBusConstants.OrderDispatchTopicName);
 
@@ -44,10 +44,12 @@ namespace GAB.Infrastructure.Azure.Inbound
         {
             Trace.TraceInformation(
                 "{0}Sending one order to topic '{1}'",
-                FormattingConstants.NewLine,
+                TraceLinePrefixer.GetConsoleLinePrefix(),
                 ServiceBusConstants.OrderDispatchTopicName);
 
-            sender.Send(new BrokeredMessage(order));
+            BrokeredMessage brokeredMessage = CreateBrokeredMessage(order);
+
+            sender.Send(brokeredMessage);
         }
 
         private IEnumerable<BrokeredMessage> CreateBatchOfMessages(IEnumerable<Order> orders)
@@ -56,12 +58,17 @@ namespace GAB.Infrastructure.Azure.Inbound
 
             foreach (Order order in orders)
             {
-                BrokeredMessage brokeredMessage = new BrokeredMessage(order);
+                BrokeredMessage brokeredMessage = CreateBrokeredMessage(order);
 
                 batch.Add(brokeredMessage);
             }
 
             return batch;
+        }
+
+        private BrokeredMessage CreateBrokeredMessage(Order order)
+        {
+            return new BrokeredMessage(order);
         }
     }
 }

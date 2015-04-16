@@ -1,14 +1,15 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GAB.Infrastructure.Azure.Inbound")]
+[assembly: AssemblyTitle("GAB.Console.ConsumerOutput")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("GAB.Infrastructure.Azure.Inbound")]
+[assembly: AssemblyProduct("GAB.Console.ConsumerOutput")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("89b5e4d7-2899-48f2-8e0f-14871221c958")]
+[assembly: Guid("765531cf-5718-48b6-8ae7-d6722fe4797f")]
 
 // Version information for an assembly consists of the following four values:
 //

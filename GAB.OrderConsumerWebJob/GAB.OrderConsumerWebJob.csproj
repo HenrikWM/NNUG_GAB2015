@@ -101,10 +101,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Performance\Microsoft.ServiceBus.MessagingPerformanceCounters.man" />
     <None Include="Properties\PublishProfiles\gab-oslo-2015.pubxml" />
+    <None Include="Properties\PublishProfiles\hwm-gab-oslo-2015.pubxml" />
     <None Include="Properties\webjob-publish-settings.json" />
   </ItemGroup>
   <ItemGroup>
@@ -112,9 +115,9 @@
       <Project>{B7342C14-38D7-4D89-BAAC-99B154EA32E0}</Project>
       <Name>GAB.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GAB.Infrastructure.Azure.Inbound\GAB.Infrastructure.Azure.Inbound.csproj">
+    <ProjectReference Include="..\GAB.Infrastructure.Azure.Producer\GAB.Infrastructure.Azure.Producer.csproj">
       <Project>{FC7DEFDB-4AA2-467E-B210-480933D35FE4}</Project>
-      <Name>GAB.Infrastructure.Azure.Inbound</Name>
+      <Name>GAB.Infrastructure.Azure.Producer</Name>
     </ProjectReference>
     <ProjectReference Include="..\GAB.Infrastructure.Azure\GAB.Infrastructure.Azure.csproj">
       <Project>{FB47D66B-D8BB-4A2C-9293-64A398542C90}</Project>
