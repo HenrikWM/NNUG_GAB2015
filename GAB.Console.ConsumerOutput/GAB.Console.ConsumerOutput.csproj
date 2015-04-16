@@ -52,6 +52,10 @@
       <Project>{B7342C14-38D7-4D89-BAAC-99B154EA32E0}</Project>
       <Name>GAB.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GAB.Infrastructure.Azure.Consumer\GAB.Infrastructure.Azure.Consumer.csproj">
+      <Project>{2404715f-e78f-4296-9aa1-b21d3e6e24b9}</Project>
+      <Name>GAB.Infrastructure.Azure.Consumer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GAB.Services.OrderConsumer\GAB.Services.OrderConsumer.csproj">
       <Project>{91D16675-4F2A-44BC-8973-EDD57CED1A36}</Project>
       <Name>GAB.Services.OrderConsumer</Name>

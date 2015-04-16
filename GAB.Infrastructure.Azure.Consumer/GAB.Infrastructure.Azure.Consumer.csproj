@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AzureTableStorageOrderStorage.cs" />
+    <Compile Include="InMemoryOrderStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -86,6 +87,10 @@
     <ProjectReference Include="..\GAB.Infrastructure.Azure\GAB.Infrastructure.Azure.csproj">
       <Project>{FB47D66B-D8BB-4A2C-9293-64A398542C90}</Project>
       <Name>GAB.Infrastructure.Azure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GAB.Services.OrderConsumer\GAB.Services.OrderConsumer.csproj">
+      <Project>{91D16675-4F2A-44BC-8973-EDD57CED1A36}</Project>
+      <Name>GAB.Services.OrderConsumer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

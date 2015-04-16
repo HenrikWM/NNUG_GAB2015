@@ -39,7 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OrderStorage.cs" />
+    <Compile Include="IOrderStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimedOperation.cs" />
   </ItemGroup>
@@ -47,14 +47,6 @@
     <ProjectReference Include="..\GAB.Core\GAB.Core.csproj">
       <Project>{B7342C14-38D7-4D89-BAAC-99B154EA32E0}</Project>
       <Name>GAB.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GAB.Infrastructure.Azure.Consumer\GAB.Infrastructure.Azure.Consumer.csproj">
-      <Project>{2404715F-E78F-4296-9AA1-B21D3E6E24B9}</Project>
-      <Name>GAB.Infrastructure.Azure.Consumer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GAB.Infrastructure.Azure.Producer\GAB.Infrastructure.Azure.Producer.csproj">
-      <Project>{FC7DEFDB-4AA2-467E-B210-480933D35FE4}</Project>
-      <Name>GAB.Infrastructure.Azure.Producer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

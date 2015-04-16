@@ -34,9 +34,9 @@ If you are going to follow all of the steps in this assignment, then make sure y
 
 [https://aws.amazon.com/blogs/aws/sqs_super_queue/](https://aws.amazon.com/blogs/aws/sqs_super_queue/)
 
-https://msdn.microsoft.com/en-us/library/azure/hh528527.aspx
+[https://msdn.microsoft.com/en-us/library/azure/hh528527.aspx](https://msdn.microsoft.com/en-us/library/azure/hh528527.aspx)
 
-http://www.kcode.me/post/azure-service-bus-brokeredmessage-serialization
+[http://www.kcode.me/post/azure-service-bus-brokeredmessage-serialization](http://www.kcode.me/post/azure-service-bus-brokeredmessage-serialization)
 
 ### Questions?
 
@@ -50,11 +50,11 @@ Background
 
 You work as an independent consultant and have been contracted by Contoso Inc. to help them implement their new e-commerce website. 
 
-Their old website didn't handle high-volume traffic and they lost business over popular holidays when orders coming in were dropped because their back-end couldn't handle the load. Therefore it is a critical requirement that the new solution will take care of every single order that comes in. 
+Their old website didn't handle high-volume traffic and they lost business over popular holidays when orders coming in were dropped because their website couldn't handle the load. Therefore it is a critical requirement that the new solution will take care of every single order that comes in, especially during peak traffic.
 
-They have staff to keep track of orders so manually entering is an option should the back-end systems go down, but the orders must not be lost and the customers purchasing must get feedback of the order placement!
+They have staff to handle orders coming in manually should the website go down, but the orders must not be lost once they have been entered!
 
-To start things off they would like you to create a proof-of-concept solution before going into a full blown project, so the tasks are small in scope and requirements for UX and GUI are minimal. At this stage they are mainly concerned with creating a skeleton-solution that delivers on their primary requirements. You main goals are therefore to maximize throughput of order placements and ensure consistent data throughout the order process.
+To start things off they would like you to create a proof-of-concept solution before going into a full blown project, so the tasks are small in scope and requirements for UX and GUI are minimal. At this stage they are mainly concerned with creating a skeleton-solution that delivers on their primary requirements. You main goals are therefore to maximize throughput of order placements and ensure consistent data throughout the order process, from order inception until it's stored.
 
 Assignment #1 - Consume orders and store in Azure
 --------------------------------------------------

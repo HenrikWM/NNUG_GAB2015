@@ -4,14 +4,15 @@
     using System.Threading;
 
     using GAB.Core;
+    using GAB.Infrastructure.Azure.Consumer;
     using GAB.Services.OrderConsumer;
 
     class Program
     {
         private static void Main(string[] args)
         {
-            OrderStorage orderStorage = new OrderStorage();
-            
+            IOrderStorage orderStorage = new AzureTableStorageOrderStorage();
+
             const double OrdersToProducePerSecond = 10;
 
             const int SecondsToSleep = 1;
@@ -20,25 +21,29 @@
 
             int lastTotalNumberOfOrders = 0;
 
-            double throughPut = 0;
-            
             while (true)
             {
                 int currentTotalNumberOfOrders = orderStorage.GetTotalNumberOfOrders();
 
+                Console.WriteLine(
+                        "{0}Total number of orders: {1}",
+                        TraceLinePrefixer.GetConsoleLinePrefix(),
+                        currentTotalNumberOfOrders);
+
                 int ordersDelta = currentTotalNumberOfOrders - lastTotalNumberOfOrders;
 
-                if (ordersDelta > 0)
-                    throughPut = Math.Round(ordersDelta / OrdersToProducePerSecond, 2);
+                if (ordersDelta > 0 && lastTotalNumberOfOrders > 0)
+                {
+                    double throughPut = Math.Round(ordersDelta / OrdersToProducePerSecond, 2);
 
-                Console.WriteLine(
-                        "{0}Total number of orders: {1}. Throughput: {2} orders/sec. Sleeping for {3} seconds...",
+                    Console.WriteLine(
+                        "{0}Throughput: {1} orders/sec. Sleeping for {2} seconds...",
                         TraceLinePrefixer.GetConsoleLinePrefix(),
-                        lastTotalNumberOfOrders,
                         throughPut,
                         SecondsToSleep);
 
-                Thread.Sleep(sleepTime);
+                    Thread.Sleep(sleepTime);
+                }
 
                 lastTotalNumberOfOrders = orderStorage.GetTotalNumberOfOrders();
             }

@@ -1,17 +1,19 @@
 ﻿namespace GAB.Infrastructure.Azure.Consumer
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Globalization;
     using System.Linq;
 
     using GAB.Core;
+    using GAB.Services.OrderConsumer;
 
     using Microsoft.Azure;
     using Microsoft.WindowsAzure.Storage;
     using Microsoft.WindowsAzure.Storage.Table;
 
-    public class AzureTableStorageOrderStorage
+    public class AzureTableStorageOrderStorage : IOrderStorage
     {
         public int GetTotalNumberOfOrders()
         {
@@ -24,14 +26,59 @@
 
             TableQuery<OrderEntity> query = new TableQuery<OrderEntity>();
 
-            IEnumerable<OrderEntity> nn = table.ExecuteQuery(query);
+            IEnumerable<OrderEntity> orderEntities = table.ExecuteQuery(query);
 
-            return nn.Count();
+            if (orderEntities != null && orderEntities.Any())
+                return orderEntities.Count();
+            
+            return 0;
         }
 
         private class OrderEntity : TableEntity
         {
-            
+            public OrderEntity()
+            {
+                Customer = new Customer();
+                OrderItem = new OrderItem();
+                Created = DateTime.MinValue;
+                OrderNo = 0;
+
+                PartitionKey = Customer.No.ToString(CultureInfo.InvariantCulture);
+                RowKey = OrderNo.ToString(CultureInfo.InvariantCulture);
+            }
+
+            public Customer Customer { get; set; }
+
+            public OrderItem OrderItem { get; set; }
+
+            public DateTime Created { get; set; }
+
+            public int OrderNo { get; set; }
+        }
+
+        public void Store(Order order)
+        {
+            CloudStorageAccount storageAccount = Config.GetCloudStorageAccount("StorageConnectionString");
+            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+            CloudTable table = tableClient.GetTableReference(TableStorageConstants.OrdersTableName);
+
+            table.CreateIfNotExists();
+
+            OrderEntity orderEntity = new OrderEntity {
+                Created = order.Created,
+                Customer = order.Customer,
+                OrderItem = order.OrderItem
+            };
+
+            TableOperation insertOperation = TableOperation.Insert(orderEntity);
+
+            // Execute the insert operation.
+            TableResult result = table.Execute(insertOperation);
+
+            if (result.HttpStatusCode >= 400)
+            {
+                Trace.TraceInformation("Issue storing in storing order no. {0} was {1} : {2}.", order.OrderNo, result.HttpStatusCode, result.Result);
+            }
         }
     }
 }
