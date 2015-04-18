@@ -15,18 +15,22 @@
 
     public class AzureTableStorageOrderStorage : IOrderStorage
     {
+        private static readonly CloudStorageAccount StorageAccount;
+        private static readonly CloudTable OrderTableClient;
+
+        static AzureTableStorageOrderStorage()
+        {
+            StorageAccount = Config.GetCloudStorageAccount("StorageConnectionString");
+            var tableClient = StorageAccount.CreateCloudTableClient();
+            OrderTableClient = tableClient.GetTableReference(TableStorageConstants.OrdersTableName);
+            OrderTableClient.CreateIfNotExists();
+        }
+
         public int GetTotalNumberOfOrders()
         {
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-                CloudConfigurationManager.GetSetting("StorageConnectionString"));
-
-            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
-
-            CloudTable table = tableClient.GetTableReference(TableStorageConstants.OrdersTableName);
-
             TableQuery<OrderEntity> query = new TableQuery<OrderEntity>();
 
-            IEnumerable<OrderEntity> orderEntities = table.ExecuteQuery(query);
+            IEnumerable<OrderEntity> orderEntities = OrderTableClient.ExecuteQuery(query);
 
             if (orderEntities != null && orderEntities.Any())
                 return orderEntities.Count();
@@ -58,11 +62,7 @@
 
         public void Store(Order order)
         {
-            CloudStorageAccount storageAccount = Config.GetCloudStorageAccount("StorageConnectionString");
-            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
-            CloudTable table = tableClient.GetTableReference(TableStorageConstants.OrdersTableName);
 
-            table.CreateIfNotExists();
 
             OrderEntity orderEntity = new OrderEntity {
                 Created = order.Created,
@@ -73,7 +73,7 @@
             TableOperation insertOperation = TableOperation.Insert(orderEntity);
 
             // Execute the insert operation.
-            TableResult result = table.Execute(insertOperation);
+            TableResult result = OrderTableClient.Execute(insertOperation);
 
             if (result.HttpStatusCode >= 400)
             {
