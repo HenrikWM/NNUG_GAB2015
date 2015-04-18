@@ -10,20 +10,21 @@
     using GAB.Services.OrderConsumer;
 
     using Microsoft.Azure;
-    using Microsoft.WindowsAzure.Storage;
     using Microsoft.WindowsAzure.Storage.Table;
 
     public class AzureTableStorageOrderStorage : IOrderStorage
     {
-        private static readonly CloudStorageAccount StorageAccount;
         private static readonly CloudTable OrderTableClient;
 
         static AzureTableStorageOrderStorage()
         {
-            StorageAccount = Config.GetCloudStorageAccount("StorageConnectionString");
-            var tableClient = StorageAccount.CreateCloudTableClient();
-            OrderTableClient = tableClient.GetTableReference(TableStorageConstants.OrdersTableName);
-            OrderTableClient.CreateIfNotExists();
+            if(OrderTableClient == null)
+            {
+                var storageAccount = Config.GetCloudStorageAccount("StorageConnectionString");
+                var tableClient = storageAccount.CreateCloudTableClient();
+                OrderTableClient = tableClient.GetTableReference(TableStorageConstants.OrdersTableName);
+                OrderTableClient.CreateIfNotExists();
+            }
         }
 
         public int GetTotalNumberOfOrders()
