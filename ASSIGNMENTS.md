@@ -101,16 +101,19 @@ Alter the `GAB.Console.ManualInput` and `GAB.Console.AutomaticInput`-application
 1.1) Go to [https://manage.windowsazure.com](https://manage.windowsazure.com)
 1.2) Click on "+ New" and select **App Services->Service Bus->Topic->Custom Create**.
 
-![](http://1drv.ms/1biZqrp)
+![](https://f8h9tq.dm2302.livefilestore.com/y2pyNutCzfX1OxjAvpIAhqvkJD6FSWJI9vVbPOagi4FKP7WmdzkR3HdtsbscSNMCcTMhO86otdHGCTVXhotZ_zDuVE_yd7DIgfPnmaMGATtFQPsibQeqmn0JnT1jh9z6s-_KprWPXKOJshjeBz5GpAnmQ/ServiceBus%201.PNG?psid=1)
 
 1.3) Enter the following details:
 
 **Topic Name**: **order-dispatch**
+
 **Region**: Select your closest region
+
 **Namespace**: Create a new namespace
+
 **Namespace Name**: <your initials>-gab-oslo-2015-ns.servicebus.windows.net
 
-![](http://1drv.ms/1D4Fv4X)
+![](https://fsh9tq.dm2302.livefilestore.com/y2pp6f1KGC8DXatH4WIHNDy1usnE1d4DQYf0RdebtOPJZmA1xho7ryN6faKHzVElHfyfhs2jd8gnE_cvKc84N6GE093qFCY7lVnUBOWI-PJn75S2ZMIIjmDYmGoShocBJnmdna-5x1IXey1AwlGj6UuYA/ServiceBus%202.PNG?psid=1)
 
 1.4) Click **Next** and set "Default Message Time To Live" to **5 Minutes**. Click **Complete**.
 
@@ -147,17 +150,21 @@ Use `GAB.OrderConsumerWebJob` to listen for order messages that are put into the
 
 2.1) Open [https://portal.azure.com](https://portal.azure.com/#) and click on "+ New" in the bottom left corner:
 
-![](http://1drv.ms/1zAlinl) 
+![](https://fch9tq.dm2302.livefilestore.com/y2pT-SNCWS0ufJbF2a4p2Wy9P2mC_wi7eht4U4z7xpk087zlQopBoR85h-sqxIzCS1xLpcZBhZmEldXCUM3-IqpQtvUVdQTybAc9tjlKS8zNAd0bz3OGpDe31ttgpLY03HF-JSKP9hJZCbC5tak3zupqw/WebApp%201.PNG?psid=1) 
 
 2.2) Choose **Web + Mobile->Web App**:
 
-![](http://1drv.ms/1zAlFhG)
+![](https://fmh9tq.dm2302.livefilestore.com/y2pwLFG_imUleTBIx4H6zd20wkfW628IYnIhqfahJ2cgmIZFNr7FnaM67PPcDTeQdX09FIqsvKVeeT5Emf6FfkYP5dVCo13q2Qa1YCE03bCyu1zENExDfoMvagKmL4wXqx4aTCjsU1-l1WuuVLMyo1a5g/WebApp%202.PNG?psid=1)
 
 2.3) Enter the following details:
 
 **URL**: <your initials>-gab-oslo-2015
+
 **App Service Plan**: Select the **Basic** plan in order to test scaling later on. This can be downgraded to **Free** after you're done with these assignments.
+
 **Resource Group**: Select a resource group or create one close to your Service Bus region.
+
+![](https://fcgykg.dm2302.livefilestore.com/y2pP-G3NnVrizCAjYPVRxaRX05pCjGpOhEagh4MtZ8gL02IJs32rZ4pIBbt05psPj1kpE9KvjllUvBXLVB-dq3ucqyndEvpJEvGFWc7MtwfFdbCe3163SETJEQiEgEy_TLuD1H_DNccqUNUCre99w4BhA/WebApp%203.PNG?psid=1)
 
 2.4) Click **Create**.
 
