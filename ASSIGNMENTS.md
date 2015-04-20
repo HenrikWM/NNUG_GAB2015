@@ -17,7 +17,7 @@ If you are going to follow all of the steps in this assignment, then make sure y
 * Have a PC with Visual Studio 2013 Update 4
 * Have installed the latest version of [Azure SDK](http://go.microsoft.com/fwlink/p/?linkid=323510&clcid=0x409)
 * Have an account for the [Azure-portal](http://www.windowsazure.com/) with an active subscription
-* Have [Azure Storage Explorer](https://azurestorageexplorer.codeplex.com/) (or a similar storage explorer application) for viewing Table data.
+* Have [Azure Storage Explorer](https://azurestorageexplorer.codeplex.com/) (or a similar storage explorer application) for viewing Table Storage data.
 
 ### Resources
 
