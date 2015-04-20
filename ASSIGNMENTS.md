@@ -72,7 +72,7 @@ Assignment #1 - Store to Azure Table Storage
 You have already created two applications that can produce orders. These act as a substitute for a website with users creating orders. 
 One takes in order details from manual input (`GAB.Console.ManualInput`), the other creates a high volume of orders randomly in order to simulate high volume traffic (`GAB.Console.AutomaticInput`). They have been designed to run locally on a developer computer.
 
-Alter the `GAB.Console.ManualInput` and `GAB.Console.AutomaticInput`-applications so that they store orders to a table in Azure Table Storage. You will need to create a table called "orders".
+Alter the `GAB.Console.ManualInput` and `GAB.Console.AutomaticInput`-applications so that they store orders to a table in Azure Table Storage. You will need to create a table called **orders**.
 
 1) Replace the class `InMemoryOrderStorage` with a new class called `AzureTableStorageOrderStorage`.
 
@@ -99,6 +99,7 @@ Alter the `GAB.Console.ManualInput` and `GAB.Console.AutomaticInput`-application
 1) Create an Azure Service Bus. Create a Topic called **order-dispatch**.
 
 1.1) Go to [https://manage.windowsazure.com](https://manage.windowsazure.com)
+
 1.2) Click on "+ New" and select **App Services->Service Bus->Topic->Custom Create**.
 
 ![](https://f8h9tq.dm2302.livefilestore.com/y2pyNutCzfX1OxjAvpIAhqvkJD6FSWJI9vVbPOagi4FKP7WmdzkR3HdtsbscSNMCcTMhO86otdHGCTVXhotZ_zDuVE_yd7DIgfPnmaMGATtFQPsibQeqmn0JnT1jh9z6s-_KprWPXKOJshjeBz5GpAnmQ/ServiceBus%201.PNG?psid=1)
@@ -111,7 +112,7 @@ Alter the `GAB.Console.ManualInput` and `GAB.Console.AutomaticInput`-application
 
 **Namespace**: Create a new namespace
 
-**Namespace Name**: <your initials>-gab-oslo-2015-ns.servicebus.windows.net
+**Namespace Name**: < your initials >-gab-oslo-2015-ns.servicebus.windows.net
 
 ![](https://fsh9tq.dm2302.livefilestore.com/y2pp6f1KGC8DXatH4WIHNDy1usnE1d4DQYf0RdebtOPJZmA1xho7ryN6faKHzVElHfyfhs2jd8gnE_cvKc84N6GE093qFCY7lVnUBOWI-PJn75S2ZMIIjmDYmGoShocBJnmdna-5x1IXey1AwlGj6UuYA/ServiceBus%202.PNG?psid=1)
 
@@ -158,7 +159,7 @@ Use `GAB.OrderConsumerWebJob` to listen for order messages that are put into the
 
 2.3) Enter the following details:
 
-**URL**: <your initials>-gab-oslo-2015
+**URL**: < your initials >-gab-oslo-2015
 
 **App Service Plan**: Select the **Basic** plan in order to test scaling later on. This can be downgraded to **Free** after you're done with these assignments.
 
@@ -176,11 +177,11 @@ Use `GAB.OrderConsumerWebJob` to listen for order messages that are put into the
 
 3.3) Click on **Publish**.
 
-4) Run either `GAB.Console.ManualInput` or `GAB.Console.AutomaticInput`, and monitor on the WebJob [dashboard](https://<web app name>.scm.azurewebsites.net/azurejobs/#/jobs) as it picks messages off of the Topic. Also, use the console application `GAB.Console.ConsumerOutput` to monitor the throughput as the WebJob saves the order messages to Table Storage. 
+4) Run either `GAB.Console.ManualInput` or `GAB.Console.AutomaticInput`, and monitor on the WebJob *dashboard* (https://< webapp name >.scm.azurewebsites.net/azurejobs/#/jobs) as it picks messages off of the Topic **order-dispatch**. Also, use the console application `GAB.Console.ConsumerOutput` to monitor the throughput as the WebJob saves the order messages to Table Storage. 
 
-**Definition of Done**: You can run either console application and the order(s) will be sent to a topic. Once it arrives the WebJob should trigger your static WebJob-method and the order should then be stored into your **orders** table.
+**Definition of Done**: You can run either input console application and the orders will be sent to the **order-dispatch** Topic. Once it arrives the WebJob should trigger your static WebJob-method and the order should then be stored into your **orders** table.
 
-* Note that after running a while, the throughput increases slowly. This is the Azure-infrastructure adapting to the volume of traffic. Let it input-application run for 5 minutes and see how high the throughput goes.
+* Note that after running a while, the throughput increases slowly. This is the Azure-infrastructure adapting to the volume of traffic. Let it input-application run for about 5 minutes and see how high the throughput goes.
 
 Assignment #4 - Increase performance and throughput
 ----------------------------------------------------
