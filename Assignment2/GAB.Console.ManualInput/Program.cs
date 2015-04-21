@@ -3,7 +3,6 @@
     using System;
 
     using GAB.Core;
-    using GAB.Infrastructure.Azure.Producer;
     using GAB.Services.OrderProducer;
 
     class Program
