@@ -6,9 +6,9 @@ This is a collection of workshop assignments that was given during NNUG's Global
 Overview of assignments
 -----------------------
 
-* **Create** and **deploy** an **Azure WebJob**
-* **Store** and **retrieve** orders on an **Azure Service Bus**
 * **Store** orders in **Azure Table Storage**
+* **Send** and **retrieve** orders to/from an **Azure Service Bus Topic**
+* **Create** and **deploy** an **Azure WebJob**
 
 ### Before you begin ###
 
@@ -107,7 +107,7 @@ Alter the `GAB.Console.ManualInput` and `GAB.Console.AutomaticInput`-application
 
 1.1) Go to [https://manage.windowsazure.com](https://manage.windowsazure.com)
 
-1.2) Click on "+ New" and select **App Services->Service Bus->Topic->Custom Create**.
+1.2) Click on **+ New** and select **App Services->Service Bus->Topic->Custom Create**.
 
 ![](https://f8h9tq.dm2302.livefilestore.com/y2pyNutCzfX1OxjAvpIAhqvkJD6FSWJI9vVbPOagi4FKP7WmdzkR3HdtsbscSNMCcTMhO86otdHGCTVXhotZ_zDuVE_yd7DIgfPnmaMGATtFQPsibQeqmn0JnT1jh9z6s-_KprWPXKOJshjeBz5GpAnmQ/ServiceBus%201.PNG?psid=1)
 
