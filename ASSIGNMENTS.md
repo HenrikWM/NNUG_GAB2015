@@ -19,6 +19,10 @@ If you are going to follow all of the steps in this assignment, then make sure y
 * Have an account for the [Azure-portal](http://www.windowsazure.com/) with an active subscription
 * Have [Azure Storage Explorer](https://azurestorageexplorer.codeplex.com/) (or a similar storage explorer application) for viewing Table Storage data. You can also use Visual Studio's Server Explorer.
 
+### How to start ###
+
+There are branches created to each assignment, including a FinalSolution-branch. You may start at any one you like. For a challenge, checkout the FinalSolution-branch and go to Assignment #4 where you will increase performance by re-implementing serialization, scaling, re-implementing storage etc.
+
 ### Resources ###
 
 #### WebJobs ####
@@ -193,8 +197,6 @@ Now that you have orders being sent to the **Service Bus Topic**, the next step 
 4.2) Under **Existing Web Apps**, select the one you just created and click **Ok**.
 
 4.3) Click on **Publish**.
-
-5) Add
 
 5) Run either `GAB.Console.ManualInput` or `GAB.Console.AutomaticInput`, and monitor on the WebJob *dashboard*  at https://< webapp name >.scm.azurewebsites.net/azurejobs/#/jobs as it picks messages off of the Topic **order-dispatch**. Also, use the console application `GAB.Console.ConsumerOutput` to monitor the throughput as the WebJob saves the order messages to the table **orders**. 
 
