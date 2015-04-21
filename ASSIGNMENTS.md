@@ -85,7 +85,7 @@ You need to create a component for storing orders to **Azure Table Storage**.
 
 Alter the `GAB.Console.ManualInput` and `GAB.Console.AutomaticInput`-applications so that they store orders to a table in **Azure Table Storage**. 
 
-1) Replace the class `InMemoryOrderStorage` with a new class called `AzureTableStorageOrderStorage`.
+1) Replace the class `InMemoryOrderStorage` with a new class in `GAB.Infrastructure.Azure.Consumer` called `AzureTableStorageOrderStorage`.
 
 2) Implement the methods `Store` and `GetTotalNumberOfOrders` in `AzureTableStorageOrderStorage`
 
@@ -147,7 +147,7 @@ Note: We use a very low value to make it easier to get to a clean state (empty q
 	    <add key="ServiceBusAccessKey" value="SendListen"/>
   	</appSettings>
 
-3) Create the class `AzureServiceBusTopicOrderSender` that implements `IOrderSender`. Place it into the project `GAB.Infrastructure.Azure.Producer`.
+3) Create a new class `AzureServiceBusTopicOrderSender` in `GAB.Infrastructure.Azure.Producer` that implements `IOrderSender`. 
 
 4) Implement the methods `SendOrders` and `SendOrder` in `AzureServiceBusTopicOrderSender`
 	

@@ -6,7 +6,8 @@
     using System.Threading;
 
     using GAB.Core;
-    using GAB.Infrastructure.Azure.Producer;
+    using GAB.Infrastructure.Azure.Consumer;
+    using GAB.Services.OrderConsumer;
     using GAB.Services.OrderProducer;
 
     class Program
@@ -28,7 +29,7 @@
             {
                 RandomOrdersProducer randomOrdersProducer = new RandomOrdersProducer();
 
-                IOrderSender orderSender = new AzureServiceBusTopicOrderSender();
+                IOrderStorage orderStorage = new InMemoryOrderStorage(); // TODO: replace with new class AzureTableStorageOrderStorage
                 
                 while (true)
                 {
@@ -39,10 +40,13 @@
                         TraceLinePrefixer.GetConsoleLinePrefix(),
                         orders.Count);
 
-                    orderSender.SendOrders(orders);
+                    foreach (Order order in orders)
+                    {
+                        orderStorage.Store(order);
+                    }
 
                     Console.WriteLine(
-                        "{0}Sent the orders to the service bus topic. Sleeping for {1} seconds...",
+                        "{0}Sent the orders to order storage. Sleeping for {1} seconds...",
                         TraceLinePrefixer.GetConsoleLinePrefix(),
                         SecondsToSleep);
 

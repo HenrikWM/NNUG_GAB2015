@@ -3,7 +3,8 @@
     using System;
 
     using GAB.Core;
-    using GAB.Infrastructure.Azure.Producer;
+    using GAB.Infrastructure.Azure.Consumer;
+    using GAB.Services.OrderConsumer;
     using GAB.Services.OrderProducer;
 
     class Program
@@ -31,17 +32,16 @@
 
                 OrderProducer orderProducer = new OrderProducer();
 
-                // Assignment #1 IOrderStorage orderStorage = new InMemoryOrderStorage()
-                IOrderSender orderSender = new AzureServiceBusTopicOrderSender();
+                IOrderStorage orderStorage = new InMemoryOrderStorage(); // TODO: replace with new class AzureTableStorageOrderStorage
 
                 Order order = orderProducer.Produce(orderNo, customerNo, customerName, orderItemNo, orderItemName);
 
                 Console.WriteLine("{0}Created order: {0}{1}", TraceLinePrefixer.GetConsoleLinePrefix(), order);
 
-                orderSender.SendOrder(order);
+                orderStorage.Store(order);
                 
                 Console.WriteLine(
-                    "{0}Sent order to the service bus topic.",
+                    "{0}Sent order to order storage.",
                     TraceLinePrefixer.GetConsoleLinePrefix());
 
                 Console.WriteLine("{0}Press any key to quit...", TraceLinePrefixer.GetConsoleLinePrefix());
