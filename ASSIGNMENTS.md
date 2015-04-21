@@ -180,6 +180,8 @@ Use a WebJob (`GAB.OrderConsumerWebJob`) to listen for order messages that are p
 
 3) Add **connectionStrings** to your **Service Bus** and **Storage Account** in the `GAB.OrderConsumerWebJob`-project's `App.config`.
 
+3.1) Also, update the `App.config` in the 3 console applications by adding a connection string to your **Service Bus** and **Storage Account**.
+
 4) Publish the WebJob to Azure. You will create a publish profile during publishing if this is your first WebApp-publish. Right-click on the `GAB.OrderConsumerWebJob`-project and select **Publish as Azure WebJob**.
 
 4.1) Click on **Microsoft Azure Web Apps** to create a new publish profile.
@@ -187,6 +189,8 @@ Use a WebJob (`GAB.OrderConsumerWebJob`) to listen for order messages that are p
 4.2) Under **Existing Web Apps**, select the one you just created and click **Ok**.
 
 4.3) Click on **Publish**.
+
+5) Add
 
 5) Run either `GAB.Console.ManualInput` or `GAB.Console.AutomaticInput`, and monitor on the WebJob *dashboard*  at https://< webapp name >.scm.azurewebsites.net/azurejobs/#/jobs as it picks messages off of the Topic **order-dispatch**. Also, use the console application `GAB.Console.ConsumerOutput` to monitor the throughput as the WebJob saves the order messages to the table **orders**. 
 
