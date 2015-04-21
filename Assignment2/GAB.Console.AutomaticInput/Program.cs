@@ -28,7 +28,7 @@
             {
                 RandomOrdersProducer randomOrdersProducer = new RandomOrdersProducer();
 
-                IOrderSender orderSender = new AzureServiceBusTopicOrderSender();
+                IOrderSender orderSender = // TODO: Create new class AzureServiceBusTopicOrderSender 
                 
                 while (true)
                 {

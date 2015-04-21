@@ -147,7 +147,7 @@ Note: We use a very low value to make it easier to get to a clean state (empty q
 	    <add key="ServiceBusAccessKey" value="SendListen"/>
   	</appSettings>
 
-3) Create the class `AzureServiceBusTopicOrderSender` that implements `IOrderSender`.
+3) Create the class `AzureServiceBusTopicOrderSender` that implements `IOrderSender`. Place it into the project `GAB.Infrastructure.Azure.Producer`.
 
 4) Implement the methods `SendOrders` and `SendOrder` in `AzureServiceBusTopicOrderSender`
 	
