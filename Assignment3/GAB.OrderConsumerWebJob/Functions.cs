@@ -15,8 +15,8 @@ namespace GAB.OrderConsumerWebJob
     public class Functions
     {
         public static void ProcessTopicMessage(
-            [ServiceBusTrigger(ServiceBusConstants.OrderDispatchTopicName, ServiceBusConstants.SubscriptionName)] BrokeredMessage message,
-            [Table(TableStorageConstants.OrdersTableName)] ICollector<Order> tableBinding,
+            // TODO: ServiceBusTrigger,
+            // TODO: Table,
             TextWriter log)
         {
             try
