@@ -10,7 +10,7 @@ Overview of assignments
 * **Store** and **retrieve** orders on an **Azure Service Bus**
 * **Store** orders in **Azure Table Storage**
 
-### Before you begin
+### Before you begin ###
 
 If you are going to follow all of the steps in this assignment, then make sure you have all of the prerequisites:
 
@@ -19,8 +19,9 @@ If you are going to follow all of the steps in this assignment, then make sure y
 * Have an account for the [Azure-portal](http://www.windowsazure.com/) with an active subscription
 * Have [Azure Storage Explorer](https://azurestorageexplorer.codeplex.com/) (or a similar storage explorer application) for viewing Table Storage data.
 
-### Resources
+### Resources ###
 
+#### WebJobs ####
 [http://azure.microsoft.com/en-us/documentation/articles/websites-dotnet-webjobs-sdk-service-bus/](http://azure.microsoft.com/en-us/documentation/articles/websites-dotnet-webjobs-sdk-service-bus/)
 
 [http://www.troyhunt.com/2015/01/azure-webjobs-are-awesome-and-you.html](http://www.troyhunt.com/2015/01/azure-webjobs-are-awesome-and-you.html)
@@ -29,25 +30,28 @@ If you are going to follow all of the steps in this assignment, then make sure y
 
 [https://github.com/Azure/azure-webjobs-sdk-samples/tree/master/BasicSamples](https://github.com/Azure/azure-webjobs-sdk-samples/tree/master/BasicSamples)
 
+#### Azure ####
+
 [https://resources.azure.com/](https://resources.azure.com/)
 
+[http://www.kcode.me/post/azure-service-bus-brokeredmessage-serialization](http://www.kcode.me/post/azure-service-bus-brokeredmessage-serialization)
+
+#### Producer / Consumer ####
 [http://www.ni.com/white-paper/3023/en/](http://www.ni.com/white-paper/3023/en/)
 
 [https://aws.amazon.com/blogs/aws/sqs_super_queue/](https://aws.amazon.com/blogs/aws/sqs_super_queue/)
 
 [https://msdn.microsoft.com/en-us/library/azure/hh528527.aspx](https://msdn.microsoft.com/en-us/library/azure/hh528527.aspx)
 
-[http://www.kcode.me/post/azure-service-bus-brokeredmessage-serialization](http://www.kcode.me/post/azure-service-bus-brokeredmessage-serialization)
-
-### Disclaimer
+### Disclaimer ###
 
 The code in this assignment have been created to be consise and light by purpose, and is intended to be educational rather than production-ready. There are minimal efforts to be resilient and error handling is minimal. 
 
-### Estimated assignment duration
+### Estimated assignment duration ###
 
 2-4 hours
 
-### Questions?
+### Questions? ###
 
 Contact us:
 
@@ -69,24 +73,27 @@ To start things off they would like you to create a proof-of-concept solution be
 Assignment #1 - Store to Azure Table Storage
 ---------------------------------------------
 
-You have already created two applications that can produce orders. These act as a substitute for a website with users creating orders. 
-One takes in order details from manual input (`GAB.Console.ManualInput`), the other creates a high volume of orders randomly in order to simulate high volume traffic (`GAB.Console.AutomaticInput`). They have been designed to run locally on a developer computer.
+You have already created two console applications that can produce orders. These act as a substitute for a website with users creating orders. 
 
-Alter the `GAB.Console.ManualInput` and `GAB.Console.AutomaticInput`-applications so that they store orders to a table in Azure Table Storage. You will need to create a table called **orders**.
+One takes in order details as input from the console (`GAB.Console.ManualInput`), the other creates a high volume of orders randomly in order to simulate high volume traffic (`GAB.Console.AutomaticInput`). Both applications have been designed to run locally on a developer computer.
+
+Alter the `GAB.Console.ManualInput` and `GAB.Console.AutomaticInput`-applications so that they store orders to a table in **Azure Table Storage**. 
 
 1) Replace the class `InMemoryOrderStorage` with a new class called `AzureTableStorageOrderStorage`.
 
 2) Implement the methods `Store` and `GetTotalNumberOfOrders` in `AzureTableStorageOrderStorage`
 
-3) Ensure you have set an *appSetting* named **StorageConnectionString** in the `App.config` of the console-applications:
+2.1) Make sure your `Store`-method creates the table **orders** if it doesn't already exist.
+
+2.2) Use the `OrderEntity`-class for storing an order and map from `Order` to `OrderEntity` before you store the order. 
+
+3) Ensure you have set an *appSetting* named **StorageConnectionString** in the `App.config` of the console-applications. Get the your **Storage Account** connection string from the Azure portal and add it to the configuration as follows:
 
 	<appSettings>
     	<add key="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=<your storage account name>;AccountKey=<your storage account key>"/>
   	</appSettings>
 
-4) Run the console applications and watch as orders are stored. Also, use the console application `GAB.Console.ConsumerOutput` to monitor the throughput. 
-
-Make sure your `Store`-method creates the table "orders" if it doesn't already exist. Use the `OrderEntity`-class for storing an order and map from `Order` to `OrderEntity` before you store the order.
+4) Run the console applications and watch as orders are stored using a Storage Explorer tool or Visual Studio's **Team Explorer**. Also, use the console application `GAB.Console.ConsumerOutput` to monitor the throughput. 
 
 **Definition of Done**: You can run these console applications and watch as they generate orders and store them into your **orders** table.
 
@@ -94,9 +101,9 @@ Make sure your `Store`-method creates the table "orders" if it doesn't already e
 Assignment #2 - Send orders to an Azure Service Bus Topic
 ----------------------------------------------------------
 
-Alter the `GAB.Console.ManualInput` and `GAB.Console.AutomaticInput`-applications so that they send orders to a Topic on an Azure Service Bus.
+Alter the `GAB.Console.ManualInput` and `GAB.Console.AutomaticInput`-applications so that they send orders to a **Topic** on an **Azure Service Bus**.
 
-1) Create an Azure Service Bus. Create a Topic called **order-dispatch**.
+1) Create an **Azure Service Bus** and a Topic called **order-dispatch**.
 
 1.1) Go to [https://manage.windowsazure.com](https://manage.windowsazure.com)
 
@@ -151,7 +158,7 @@ Use `GAB.OrderConsumerWebJob` to listen for order messages that are put into the
 
 2) Create the WebApp-container that will host your WebJob.
 
-2.1) Open [https://portal.azure.com](https://portal.azure.com/#) and click on "+ New" in the bottom left corner:
+2.1) Open [https://portal.azure.com](https://portal.azure.com/#) and click on **+ New** in the bottom left corner:
 
 ![](https://fch9tq.dm2302.livefilestore.com/y2pT-SNCWS0ufJbF2a4p2Wy9P2mC_wi7eht4U4z7xpk087zlQopBoR85h-sqxIzCS1xLpcZBhZmEldXCUM3-IqpQtvUVdQTybAc9tjlKS8zNAd0bz3OGpDe31ttgpLY03HF-JSKP9hJZCbC5tak3zupqw/WebApp%201.PNG?psid=1) 
 
@@ -179,11 +186,11 @@ Use `GAB.OrderConsumerWebJob` to listen for order messages that are put into the
 
 3.3) Click on **Publish**.
 
-4) Run either `GAB.Console.ManualInput` or `GAB.Console.AutomaticInput`, and monitor on the WebJob *dashboard* (https://< webapp name >.scm.azurewebsites.net/azurejobs/#/jobs) as it picks messages off of the Topic **order-dispatch**. Also, use the console application `GAB.Console.ConsumerOutput` to monitor the throughput as the WebJob saves the order messages to Table Storage. 
+4) Run either `GAB.Console.ManualInput` or `GAB.Console.AutomaticInput`, and monitor on the WebJob *dashboard*  at https://< webapp name >.scm.azurewebsites.net/azurejobs/#/jobs as it picks messages off of the Topic **order-dispatch**. Also, use the console application `GAB.Console.ConsumerOutput` to monitor the throughput as the WebJob saves the order messages to the table **orders**. 
 
-**Definition of Done**: You can run either input console application and the orders will be sent to the **order-dispatch** Topic. Once it arrives the WebJob should trigger your static WebJob-method and the order should then be stored into your **orders** table.
+**Definition of Done**: You can run either input-application and the orders will be sent to the **order-dispatch** Topic. Once a message arrives to the Topic, the WebJob should trigger your static WebJob-method and the order should then be stored into your **orders** table.
 
-* Note that after running a while, the throughput increases slowly. This is the Azure-infrastructure adapting to the volume of traffic. Let it input-application run for about 5 minutes and see how high the throughput goes.
+* Note that after running a while, the throughput *increases slowly*. This is the Azure-infrastructure adapting to the volume of traffic. Let it input-application run for about **5 minutes** and see how high the throughput goes.
 
 Assignment #4 - Increase performance and throughput
 ----------------------------------------------------
@@ -205,3 +212,8 @@ Areas for improvement might include:
 * switch between storage implementations (Table Storage, DocumentDB etc.)
 * synchronous vs asynchronous
 
+
+Final solution
+--------------
+
+For reference, see branch **FinalSolution** for an example of a finished assignment solution. 

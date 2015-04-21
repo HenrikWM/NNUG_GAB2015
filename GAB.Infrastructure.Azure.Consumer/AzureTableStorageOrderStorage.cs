@@ -9,7 +9,6 @@
     using GAB.Core;
     using GAB.Services.OrderConsumer;
 
-    using Microsoft.Azure;
     using Microsoft.WindowsAzure.Storage.Table;
 
     public class AzureTableStorageOrderStorage : IOrderStorage
@@ -63,8 +62,6 @@
 
         public void Store(Order order)
         {
-
-
             OrderEntity orderEntity = new OrderEntity {
                 Created = order.Created,
                 Customer = order.Customer,
