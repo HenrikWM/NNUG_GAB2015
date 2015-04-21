@@ -127,7 +127,7 @@ Alter the `GAB.Console.ManualInput` and `GAB.Console.AutomaticInput`-application
 Note: We use a very low value to make it easier to get to a clean state (empty queue/topic).
 [More info about TimeToLive](https://msdn.microsoft.com/en-us/library/microsoft.servicebus.messaging.brokeredmessage.timetolive.aspx)
 
-1.5) Once the Service Bus has been created, click on it and go to the tab **Topics** and click on **order-dispatch**. 
+1.5) Once the **Service Bus** has been created, click on it and go to the tab **Topics** and click on **order-dispatch**. 
 
 1.6) Click on the tab **Configure** and go down to **Shared access policies** and create a policy called **SendListen** that have the permissions **Send** and **Listen**. Click **Save**. Note the generated **Primary Key**, use it in step 1.7.
 
@@ -150,11 +150,11 @@ Note: We use a very low value to make it easier to get to a clean state (empty q
 Assignment #3 - Use an Azure WebJob that consumes orders via a Service Bus Topic
 ---------------------------------------------------------------------------------
 
-Use `GAB.OrderConsumerWebJob` to listen for order messages that are put into the topic, and send them into your Azure Table Storage order table.
+Use a WebJob (`GAB.OrderConsumerWebJob`) to listen for order messages that are put into the topic, and send them into your **Azure Table Storage** order table.
 
 1) Add the appropriate method parameters in the `ProcessTopicMessage`-method in `Functions.cs`
 
-* Use the following classes as parameters: *ServiceBusTrigger*, *Table* and *TextWriter*.
+* Use the following classes as parameters: *ServiceBusTrigger* and *Table*.
 
 2) Create the WebApp-container that will host your WebJob.
 
@@ -178,15 +178,17 @@ Use `GAB.OrderConsumerWebJob` to listen for order messages that are put into the
 
 2.4) Click **Create**.
 
-3) Publish the WebJob to Azure. You will create a publish profile during publishing if this is your first WebApp-publish. Right-click on the `GAB.OrderConsumer.WebJob`-project and select **Publish as Azure WebJob**.
+3) Add **connectionStrings** to your **Service Bus** and **Storage Account** in the `GAB.OrderConsumerWebJob`-project's `App.config`.
 
-3.1) Click on **Microsoft Azure Web Apps** to create a new publish profile.
+4) Publish the WebJob to Azure. You will create a publish profile during publishing if this is your first WebApp-publish. Right-click on the `GAB.OrderConsumerWebJob`-project and select **Publish as Azure WebJob**.
 
-3.2) Under **Existing Web Apps**, select the one you just created and click **Ok**.
+4.1) Click on **Microsoft Azure Web Apps** to create a new publish profile.
 
-3.3) Click on **Publish**.
+4.2) Under **Existing Web Apps**, select the one you just created and click **Ok**.
 
-4) Run either `GAB.Console.ManualInput` or `GAB.Console.AutomaticInput`, and monitor on the WebJob *dashboard*  at https://< webapp name >.scm.azurewebsites.net/azurejobs/#/jobs as it picks messages off of the Topic **order-dispatch**. Also, use the console application `GAB.Console.ConsumerOutput` to monitor the throughput as the WebJob saves the order messages to the table **orders**. 
+4.3) Click on **Publish**.
+
+5) Run either `GAB.Console.ManualInput` or `GAB.Console.AutomaticInput`, and monitor on the WebJob *dashboard*  at https://< webapp name >.scm.azurewebsites.net/azurejobs/#/jobs as it picks messages off of the Topic **order-dispatch**. Also, use the console application `GAB.Console.ConsumerOutput` to monitor the throughput as the WebJob saves the order messages to the table **orders**. 
 
 **Definition of Done**: You can run either input-application and the orders will be sent to the **order-dispatch** Topic. Once a message arrives to the Topic, the WebJob should trigger your static WebJob-method and the order should then be stored into your **orders** table.
 
