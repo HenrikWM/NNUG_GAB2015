@@ -17,11 +17,12 @@ If you are going to follow all of the steps in this assignment, then make sure y
 * Have a PC with Visual Studio 2013 Update 4
 * Have installed the latest version of [Azure SDK](http://go.microsoft.com/fwlink/p/?linkid=323510&clcid=0x409)
 * Have an account for the [Azure-portal](http://www.windowsazure.com/) with an active subscription
-* Have [Azure Storage Explorer](https://azurestorageexplorer.codeplex.com/) (or a similar storage explorer application) for viewing Table Storage data.
+* Have [Azure Storage Explorer](https://azurestorageexplorer.codeplex.com/) (or a similar storage explorer application) for viewing Table Storage data. You can also use Visual Studio's Server Explorer.
 
 ### Resources ###
 
 #### WebJobs ####
+
 [http://azure.microsoft.com/en-us/documentation/articles/websites-dotnet-webjobs-sdk-service-bus/](http://azure.microsoft.com/en-us/documentation/articles/websites-dotnet-webjobs-sdk-service-bus/)
 
 [http://www.troyhunt.com/2015/01/azure-webjobs-are-awesome-and-you.html](http://www.troyhunt.com/2015/01/azure-webjobs-are-awesome-and-you.html)
@@ -37,6 +38,7 @@ If you are going to follow all of the steps in this assignment, then make sure y
 [http://www.kcode.me/post/azure-service-bus-brokeredmessage-serialization](http://www.kcode.me/post/azure-service-bus-brokeredmessage-serialization)
 
 #### Producer / Consumer ####
+
 [http://www.ni.com/white-paper/3023/en/](http://www.ni.com/white-paper/3023/en/)
 
 [https://aws.amazon.com/blogs/aws/sqs_super_queue/](https://aws.amazon.com/blogs/aws/sqs_super_queue/)
@@ -67,15 +69,15 @@ Their old website didn't handle high-volume traffic and they lost business over 
 
 They have staff to handle orders coming in manually should the website go down, but the orders must not be lost once they have been entered!
 
-To start things off they would like you to create a proof-of-concept solution before going into a full blown project, so the tasks are small in scope and requirements for UX and GUI are minimal. At this stage they are mainly concerned with creating a skeleton-solution that delivers on their primary requirements. You main goals are therefore to maximize throughput of order placements and ensure consistent data throughout the order process, from order inception until it's stored.
+They've hired you as a specialist in leveraging the power of the Cloud to ensure a new and better performing website. To start things off they would like you to create a proof-of-concept solution before going into a full blown project, so the tasks are small in scope and requirements for UX and GUI are minimal. At this stage they are mainly concerned with creating a skeleton-solution that delivers on their primary requirements. Your main goals are therefore to maximize throughput of order placements and ensure consistent data throughout the order process, from order inception until it's stored.
 
 
 Assignment #1 - Store to Azure Table Storage
 ---------------------------------------------
 
-You have already created two console applications that can produce orders. These act as a substitute for a website with users creating orders. 
+You have already created two console applications that can produce orders. These act as a substitute for a website with users creating orders. One takes in order details as input from the console (`GAB.Console.ManualInput`), the other creates a high volume of orders randomly in order to simulate high volume traffic (`GAB.Console.AutomaticInput`). Both applications have been designed to run locally on a developer computer.
 
-One takes in order details as input from the console (`GAB.Console.ManualInput`), the other creates a high volume of orders randomly in order to simulate high volume traffic (`GAB.Console.AutomaticInput`). Both applications have been designed to run locally on a developer computer.
+You need to create a component for storing orders to **Azure Table Storage**.
 
 Alter the `GAB.Console.ManualInput` and `GAB.Console.AutomaticInput`-applications so that they store orders to a table in **Azure Table Storage**. 
 
@@ -100,6 +102,8 @@ Alter the `GAB.Console.ManualInput` and `GAB.Console.AutomaticInput`-application
 
 Assignment #2 - Send orders to an Azure Service Bus Topic
 ----------------------------------------------------------
+
+Now that you can store orders using a Producer, the next step is for the Producer to send orders to a Service Bus Topic. You will later write a component that consumes the orders from the Topic.
 
 Alter the `GAB.Console.ManualInput` and `GAB.Console.AutomaticInput`-applications so that they send orders to a **Topic** on an **Azure Service Bus**.
 
@@ -150,7 +154,7 @@ Note: We use a very low value to make it easier to get to a clean state (empty q
 Assignment #3 - Use an Azure WebJob that consumes orders via a Service Bus Topic
 ---------------------------------------------------------------------------------
 
-Use a WebJob (`GAB.OrderConsumerWebJob`) to listen for order messages that are put into the topic, and send them into your **Azure Table Storage** order table.
+Now that you have orders being sent to the **Service Bus Topic**, the next step is to consume orders placed onto the Topic. This consumer will be implemented as an **Azure WebJob**. Use the existing project `GAB.OrderConsumerWebJob` to listen for order messages that are put onto the Topic, and send them into your **Azure Table Storage** order table.
 
 1) Add the appropriate method parameters in the `ProcessTopicMessage`-method in `Functions.cs`
 
