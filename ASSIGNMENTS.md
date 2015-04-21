@@ -116,7 +116,9 @@ Alter the `GAB.Console.ManualInput` and `GAB.Console.AutomaticInput`-application
 
 ![](https://fsh9tq.dm2302.livefilestore.com/y2pp6f1KGC8DXatH4WIHNDy1usnE1d4DQYf0RdebtOPJZmA1xho7ryN6faKHzVElHfyfhs2jd8gnE_cvKc84N6GE093qFCY7lVnUBOWI-PJn75S2ZMIIjmDYmGoShocBJnmdna-5x1IXey1AwlGj6UuYA/ServiceBus%202.PNG?psid=1)
 
-1.4) Click **Next** and set "Default Message Time To Live" to **5 Minutes**. Click **Complete**.
+1.4) Click **Next** and set "Default Message Time To Live" to **5 Minutes**. Click **Complete**. 
+Note: We use a very low value to make it easier to get to a clean state (empty queue/topic).
+[More info about TimeToLive](https://msdn.microsoft.com/en-us/library/microsoft.servicebus.messaging.brokeredmessage.timetolive.aspx)
 
 1.5) Once the Service Bus has been created, click on it and go to the tab **Topics** and click on **order-dispatch**. 
 
