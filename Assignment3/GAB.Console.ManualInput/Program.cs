@@ -30,8 +30,7 @@
                 ParseArguments(args);
 
                 OrderProducer orderProducer = new OrderProducer();
-
-                // Assignment #1 IOrderStorage orderStorage = new InMemoryOrderStorage()
+                
                 IOrderSender orderSender = new AzureServiceBusTopicOrderSender();
 
                 Order order = orderProducer.Produce(orderNo, customerNo, customerName, orderItemNo, orderItemName);
