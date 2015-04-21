@@ -21,7 +21,9 @@ If you are going to follow all of the steps in this assignment, then make sure y
 
 ### How to start ###
 
-There are branches created to each assignment, including a FinalSolution-branch. You may start at any one you like. For a challenge, checkout the FinalSolution-branch and go to Assignment #4 where you will increase performance by re-implementing serialization, scaling, re-implementing storage etc.
+There are folders created for each assignment, including a **FinalSolution** folder which contains the suggested final solution. You may start at any folder you like. 
+
+For a challenge, open the solution in the FinalSolution-folder and go to Assignment #4 where you will increase performance by re-implementing serialization, scaling, re-implementing storage etc.
 
 ### Resources ###
 
@@ -223,9 +225,4 @@ Areas for improvement might include:
 	* Warning: you will probably need to increase your payment plan in order to scale out the WebJob. 
 * switch between storage implementations (Table Storage, DocumentDB etc.)
 * synchronous vs asynchronous
-
-
-Final solution
---------------
-
-For reference, see branch **FinalSolution** for an example of a finished assignment solution. 
+ 
