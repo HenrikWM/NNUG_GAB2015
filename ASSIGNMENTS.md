@@ -192,6 +192,11 @@ Now that you have orders being sent to the **Service Bus Topic**, the next step 
 
 3.1) Also, update the `App.config` in the 3 console applications by adding a connection string to your **Service Bus** and **Storage Account**.
 
+3.2) In order to use the WebJob **Dashboard** you need to provide the WebApp with connection strings to your storage account and service bus. Go to the new WebApp and navigate to **All settings->Application Settings** and under **Connection Strings** enter your 3 `connectionStrings` from the `App.config` in `GAB.OrderConsumerWebJob`:
+
+![](https://fcgykg.dm2302.livefilestore.com/y2pyze86pwdMi7NqWa8JXxbZ2HRrY0DlXk-zJAFK_j2HlgENdAyGejKd-tku7NbA3LmS7HNf76LA84riWaYH8rSg2X_wb2Mt3vfxp60Hy-bQNcEFbliIYhpodrVllgT64Feq_AYXPmfVTqYI5HS3w4U5w/WebApp%205.PNG?psid=1)   
+
+
 4) Publish the WebJob to Azure. You will create a publish profile during publishing if this is your first WebApp-publish. Right-click on the `GAB.OrderConsumerWebJob`-project and select **Publish as Azure WebJob**.
 
 4.1) Click on **Microsoft Azure Web Apps** to create a new publish profile.
