@@ -180,7 +180,7 @@ Now that you have orders being sent to the **Service Bus Topic**, the next step 
 
 **URL**: < your initials >-gab-oslo-2015
 
-**App Service Plan**: Select the **Basic** plan in order to test scaling later on. This can be downgraded to **Free** after you're done with these assignments.
+**App Service Plan**: Select one of the **Basic** plans in order to test scaling later on. This can be downgraded to **Free** after you're done with these assignments.
 
 **Resource Group**: Select a resource group or create one close to your Service Bus region.
 
