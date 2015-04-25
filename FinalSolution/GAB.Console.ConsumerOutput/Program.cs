@@ -1,4 +1,7 @@
-﻿namespace GAB.Console.ConsumerOutput
+﻿using System.Diagnostics;
+using System.Runtime.InteropServices;
+
+namespace GAB.Console.ConsumerOutput
 {
     using System;
     using System.Threading;
@@ -20,6 +23,7 @@
             TimeSpan sleepTime = TimeSpan.FromSeconds(SecondsToSleep);
 
             int lastTotalNumberOfOrders = 0;
+            Stopwatch watch = new Stopwatch();
 
             while (true)
             {
@@ -34,7 +38,8 @@
 
                 if (ordersDelta > 0 && lastTotalNumberOfOrders > 0)
                 {
-                    double throughPut = Math.Round(ordersDelta / OrdersToProducePerSecond, 2);
+                    double timeUsed = Math.Max(1, watch.ElapsedMilliseconds)/1000d;
+                    double throughPut = Math.Round(ordersDelta / timeUsed , 2);
 
                     Console.WriteLine(
                         "{0}Throughput: {1} orders/sec. Sleeping for {2} seconds...",
@@ -46,6 +51,8 @@
                 }
 
                 lastTotalNumberOfOrders = orderStorage.GetTotalNumberOfOrders();
+                watch.Restart();
+
             }
         }
     }
